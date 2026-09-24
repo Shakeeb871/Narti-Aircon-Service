@@ -1881,3 +1881,23 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
   .about-hero, .page-hero { padding: 64px 0; }
   .contact-hero { padding: 64px 0 144px; }
 }
+
+/* ==========================================================================
+   Tighter, equal section spacing (80 / 64 / 48)
+   ========================================================================== */
+:root { --sec-gap: 80px; }
+@media (max-width: 991px) { :root { --sec-gap: 64px; } }
+@media (max-width: 640px) { :root { --sec-gap: 48px; } }
+
+.section { padding-top: var(--sec-gap); padding-bottom: var(--sec-gap); }
+.section:not(.section--navy):not(.section--light) + .section:not(.section--navy):not(.section--light),
+.section--light + .section--light { padding-top: 0; }
+.about-hero, .page-hero { padding-top: var(--sec-gap); padding-bottom: var(--sec-gap); }
+.contact-hero { padding-top: var(--sec-gap); padding-bottom: calc(var(--sec-gap) + 80px); }
+.page-404 { padding-top: var(--sec-gap); padding-bottom: var(--sec-gap); }
+.hero__content { padding-top: var(--sec-gap); padding-bottom: var(--sec-gap); }
+@media (max-width: 991px) {
+  .hero__content { padding-bottom: 40px; }
+  .hero { padding-bottom: var(--sec-gap); }
+  .cta { margin-bottom: var(--sec-gap); }
+}
