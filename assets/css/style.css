@@ -1848,3 +1848,16 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 .reviews-badge:hover { transform: none; }
 .reviews-cta { grid-template-columns: auto 1fr; }
 @media (max-width: 640px) { .reviews-cta { grid-template-columns: 1fr; } }
+
+/* ---------- Highlight slides (shown until real reviews are added) ---------- */
+.reviews-badge[hidden] { display: none; }
+.review-card--hl { flex-basis: 320px; }
+.review-card__hl-icon {
+  width: 52px; height: 52px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--navy);
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--orange);
+  margin-bottom: 18px;
+}
+.review-card__hl-icon svg { width: 24px; height: 24px; fill: none; stroke: var(--white); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.review-card__hl-title { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+@media (max-width: 640px) { .review-card--hl { flex-basis: 270px; } }

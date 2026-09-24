@@ -200,6 +200,42 @@
     document.querySelectorAll('[data-review-link="write"]').forEach(function (a) { a.href = window.NARTI_REVIEW_LINK; });
   }
 
+  var highlights = window.NARTI_HIGHLIGHTS || [];
+  if (reviewsSection && reviewsTrack && !reviewList.length && highlights.length) {
+    var ICONS = {
+      doc: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8.5 15l2.5 2.5 4.5-4.5"/>',
+      temp: '<path d="M14 14.8V4a2 2 0 1 0-4 0v10.8a4 4 0 1 0 4 0z"/><path d="M12 9v7"/>',
+      drop: '<path d="M12 2.7s6 6.4 6 11.3a6 6 0 0 1-12 0c0-4.9 6-11.3 6-11.3z"/><path d="m9.5 14 2 2 3.5-3.5"/>',
+      chat: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>',
+      home: '<path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>',
+      gauge: '<circle cx="12" cy="13" r="8"/><path d="M12 13l4-4M9 3h6M12 3v2"/>',
+      unit: '<rect x="2" y="4" width="20" height="9" rx="2"/><path d="M6 10h12M7 16v2M12 16v4M17 16v2"/>',
+      fan: '<path d="M12 2v20M4.9 6l14.2 12M19.1 6 4.9 18"/>',
+      pin: '<path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>'
+    };
+    var hl = function (h, hidden) {
+      return '<article class="review-card review-card--hl"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
+        '<span class="review-card__hl-icon"><svg viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[h.icon] || ICONS.doc) + '</svg></span>' +
+        '<h3 class="review-card__hl-title">' + h.title + '</h3>' +
+        '<p class="review-card__text">' + h.text + '</p>' +
+        '<p class="review-card__meta">' + h.tag + '</p>' +
+      '</article>';
+    };
+    reviewsTrack.innerHTML = '<div class="reviews__group">' + highlights.map(function (h) { return hl(h, false); }).join('') + '</div>' +
+      '<div class="reviews__group" aria-hidden="true">' + highlights.map(function (h) { return hl(h, true); }).join('') + '</div>';
+    reviewsTrack.style.setProperty('--reviews-duration', Math.max(30, highlights.length * 7) + 's');
+    reviewsTrack.parentNode.hidden = false;
+    reviewsTrack.parentNode.setAttribute('aria-label', 'How NARTI works');
+    var emptyBox = document.getElementById('reviewsEmpty');
+    if (emptyBox) emptyBox.hidden = true;
+    var badge = reviewsSection.querySelector('.reviews-badge');
+    if (badge) badge.hidden = true;
+    var eyebrow = reviewsSection.querySelector('.eyebrow');
+    var title = reviewsSection.querySelector('.section-title');
+    if (eyebrow) eyebrow.textContent = 'Why Customers Choose Us';
+    if (title) title.innerHTML = 'What you get on<br>every NARTI visit.';
+  }
+
   if (reviewsSection && reviewsTrack && reviewList.length) {
     var esc = function (t) {
       return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) {
