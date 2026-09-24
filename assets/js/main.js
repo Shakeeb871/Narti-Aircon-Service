@@ -195,6 +195,11 @@
   var reviewsTrack = document.getElementById('reviewsTrack');
   var reviewList = (window.NARTI_REVIEWS || []).filter(function (r) { return r && r.text; });
 
+  // "Leave a review" button uses the Google review link once it is set in reviews.js
+  if (window.NARTI_REVIEW_LINK) {
+    document.querySelectorAll('[data-review-link="write"]').forEach(function (a) { a.href = window.NARTI_REVIEW_LINK; });
+  }
+
   if (reviewsSection && reviewsTrack && reviewList.length) {
     var esc = function (t) {
       return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) {
@@ -225,7 +230,9 @@
     reviewsTrack.innerHTML = '<div class="reviews__group">' + html + '</div>' +
       '<div class="reviews__group" aria-hidden="true">' + reviewList.map(function (r) { return card(r, true); }).join('') + '</div>';
     reviewsTrack.style.setProperty('--reviews-duration', Math.max(30, reviewList.length * 7) + 's');
-    reviewsSection.hidden = false;
+    reviewsTrack.parentNode.hidden = false;
+    var emptyState = document.getElementById('reviewsEmpty');
+    if (emptyState) emptyState.hidden = true;
   }
 
   /* ---------- Footer year ---------- */

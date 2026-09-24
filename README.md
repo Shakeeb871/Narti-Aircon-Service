@@ -45,8 +45,10 @@ narti-aircon-service/
 ## Testimonials slider
 
 Paste real Google reviews into `assets/js/reviews.js` (format explained at the top of that file).
-The Testimonials section is hidden while the list is empty and appears on the home page,
-/services/ and all four service pages as soon as one review is added. No build step needed.
+The Testimonials section (home page, /services/ and the four service pages) shows a
+"Read Google Reviews / Leave a Review" card while the list is empty, and switches to the
+sliding review cards as soon as reviews are added. Put the Google "ask for reviews" link in
+NARTI_REVIEW_LINK in the same file. No build step needed.
 
 ## Google and Trustpilot ratings
 
