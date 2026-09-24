@@ -1154,3 +1154,7 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 .page-404__links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 40px; }
 .page-404__links a { color: var(--white); font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,.3); padding-bottom: 4px; }
 .page-404__links a:hover { color: var(--orange); border-color: var(--orange); }
+
+/* ---------- Ratings sit between the intro text and the buttons ---------- */
+.ratings { margin-top: 26px; }
+.ratings + .hero__actions { margin-top: 26px; }

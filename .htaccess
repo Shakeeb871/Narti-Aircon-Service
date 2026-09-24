@@ -1,4 +1,49 @@
 # NARTI Aircon Service — Apache settings (Hostinger / cPanel)
+#
+# One preferred address for every page:  https://nartiairconservice.com/page/
+#   - http  -> https
+#   - www   -> no www
+#   - /index.html and *.html -> clean URL with a trailing slash
+#   - /page -> /page/
+# Every redirect is a single 301 straight to the final address.
+#
+# IMPORTANT: switch on the free SSL certificate in the hosting panel before
+# uploading this file, otherwise browsers show a security warning.
+
+Options -Indexes
+DirectorySlash On
+DirectoryIndex index.html
+
+RewriteEngine On
+RewriteBase /
+
+# 1. /index.html or /folder/index.html -> /  or /folder/
+RewriteCond %{THE_REQUEST} \s/+((?:[^\s?]*/)?)index\.html[\s?] [NC]
+RewriteRule ^ https://nartiairconservice.com/%1 [R=301,L,NE]
+
+# 2. /page.html -> /page/
+RewriteCond %{THE_REQUEST} \s/+([^\s?]+?)\.html[\s?] [NC]
+RewriteRule ^ https://nartiairconservice.com/%1/ [R=301,L,NE]
+
+# 3. Add the trailing slash to clean URLs (not to real files like style.css)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{1,5}$
+RewriteRule ^ https://nartiairconservice.com%{REQUEST_URI}/ [R=301,L,NE]
+
+# 4. Anything else on www or http -> https://nartiairconservice.com
+RewriteCond %{HTTP_HOST} ^www\.nartiairconservice\.com$ [NC]
+RewriteRule ^ https://nartiairconservice.com%{REQUEST_URI} [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} ^nartiairconservice\.com$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^ https://nartiairconservice.com%{REQUEST_URI} [R=301,L,NE]
+
+# 5. Serve /page/ from page.html when there is no page/ folder
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/$ /$1.html [L]
 
 # Custom "page not found" page
 ErrorDocument 404 /404.html

@@ -52,9 +52,22 @@ trustpilot: { rating: 4.8, count: 20, url: 'https://www.trustpilot.com/review/na
 
 While `rating` is `null` the badges show "Read our reviews" without stars, so the site never shows a score the business has not earned.
 
+## URLs, SSL and the preferred domain
+
+`.htaccess` makes `https://nartiairconservice.com/` the only address, and every URL ends in `/` with no `.html`:
+
+| Visitor types | Lands on (one 301 redirect) |
+|---|---|
+| `http://nartiairconservice.com/` | `https://nartiairconservice.com/` |
+| `www.nartiairconservice.com/aircond-repair` | `https://nartiairconservice.com/aircond-repair/` |
+| `/aircond-service/index.html` | `/aircond-service/` |
+| `/aircond-service` | `/aircond-service/` |
+
+Switch on the free SSL certificate in the hosting panel first. Without it, the https redirect shows a browser warning.
+
 ## Deploying
 
-Upload `index.html`, the four service folders, `sitemap.xml`, `robots.txt` and the `assets/` folder to the hosting's public folder (`public_html`).
+Upload `index.html`, `404.html`, `.htaccess`, the four service folders, `sitemap.xml`, `robots.txt` and the `assets/` folder to the hosting's public folder (`public_html`).
 `source-images/` does not need to be uploaded.
 
 The "Request a Service" form opens WhatsApp with the customer's details filled in, so no server-side code is needed.
