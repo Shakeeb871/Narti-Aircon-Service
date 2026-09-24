@@ -138,7 +138,8 @@
     '.section-head, .about__content, .about__collage, .service-card, .services__intro, ' +
     '.request-form, .request__content, .step, .work-card, .why__content, .why-card, ' +
     '.faq__img, .faq__content, .post-card, .cta__content, .symptom, .package, .service-link, .included__media, ' +
-    '.habit, .tl-item, .work-tile, .promise-card, .promise-item, .story__media, .story__content'
+    '.habit, .tl-item, .work-tile, .promise-card, .promise-item, .story__media, .story__content, ' +
+    '.svc-row, .project-card, .contact-card, .send-card'
   );
 
   if ('IntersectionObserver' in window) {
@@ -166,6 +167,26 @@
       var open = areaList.classList.toggle('is-expanded');
       areaBtn.setAttribute('aria-expanded', String(open));
       areaBtn.textContent = open ? 'Show fewer areas' : moreLabel;
+    });
+  }
+
+  /* ---------- Project filters ---------- */
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  if (filterBtns.length) {
+    var cards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var cat = btn.getAttribute('data-filter');
+        filterBtns.forEach(function (b) {
+          b.classList.toggle('is-active', b === btn);
+          b.setAttribute('aria-pressed', String(b === btn));
+        });
+        cards.forEach(function (card) {
+          var show = cat === 'all' || card.getAttribute('data-cat') === cat;
+          card.hidden = !show;
+          if (show) card.classList.add('is-visible');
+        });
+      });
     });
   }
 
