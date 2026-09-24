@@ -246,16 +246,16 @@
     var card = function (r, hidden) {
       var stars = Math.max(1, Math.min(5, Math.round(r.rating || 5)));
       var initial = esc((r.name || '?').trim().charAt(0).toUpperCase());
-      var meta = [r.service, r.area].filter(Boolean).map(esc).join(' &middot; ');
+      var meta = (r.date ? [r.service, r.area] : [r.service]).filter(Boolean).map(esc).join(' &middot; ');
       return '<article class="review-card"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
         '<header class="review-card__head">' +
           '<span class="review-card__avatar">' + initial + '</span>' +
-          '<span class="review-card__who"><strong>' + esc(r.name) + '</strong><span>' + esc(r.date) + '</span></span>' +
-          gLogo +
+          '<span class="review-card__who"><strong>' + esc(r.name) + '</strong><span>' + esc(r.date || r.area || '') + '</span></span>' +
+          (r.source === 'google' ? gLogo : '') +
         '</header>' +
         '<div class="review-card__rating">' +
           '<span class="review-card__stars" aria-label="' + stars + ' out of 5 stars">' + '&#9733;'.repeat(stars) + '<span class="review-card__stars-off">' + '&#9733;'.repeat(5 - stars) + '</span></span>' +
-          (r.verified ? '<span class="review-card__verified"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2z"/><path d="m8.5 12.2 2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified</span>' : '') +
+          (r.verified ? '<span class="review-card__verified"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2z"/><path d="m8.5 12.2 2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' + (r.source === 'google' ? 'Verified' : 'Verified Customer') + '</span>' : '') +
         '</div>' +
         '<p class="review-card__text">' + esc(r.text) + '</p>' +
         (meta ? '<p class="review-card__meta">' + meta + '</p>' : '') +
@@ -267,6 +267,20 @@
       '<div class="reviews__group" aria-hidden="true">' + reviewList.map(function (r) { return card(r, true); }).join('') + '</div>';
     reviewsTrack.style.setProperty('--reviews-duration', Math.max(30, reviewList.length * 7) + 's');
     reviewsTrack.parentNode.hidden = false;
+    reviewsTrack.parentNode.setAttribute('aria-label', 'Customer testimonials');
+    var gReviews = reviewList.filter(function (r) { return r.source === 'google'; });
+    var gMeta = reviewsSection.querySelector('.reviews-badge .rating__meta');
+    var gBadgeEl = reviewsSection.querySelector('.reviews-badge');
+    if (gReviews.length && gMeta && gBadgeEl && !gBadgeEl.classList.contains('has-rating')) {
+      var avg = gReviews.reduce(function (a, r) { return a + (r.rating || 5); }, 0) / gReviews.length;
+      gBadgeEl.classList.add('has-rating');
+      gMeta.innerHTML = '<strong>' + avg.toFixed(1) + '</strong> / 5 &middot; ' + gReviews.length + ' reviews';
+    }
+    // the Google badge only makes sense when the reviews come from Google
+    if (!reviewList.some(function (r) { return r.source === 'google'; })) {
+      var gBadge = reviewsSection.querySelector('.reviews-badge');
+      if (gBadge) gBadge.hidden = true;
+    }
     var emptyState = document.getElementById('reviewsEmpty');
     if (emptyState) emptyState.hidden = true;
   }
