@@ -30,7 +30,8 @@
   });
 
   /* ---------- Active nav link on scroll ---------- */
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav__link'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav__link'))
+    .filter(function (l) { return (l.getAttribute('href') || '').charAt(0) === '#'; });
   var sections = links
     .map(function (l) { return document.querySelector(l.getAttribute('href')); })
     .filter(Boolean);
@@ -67,37 +68,47 @@
 
   /* ---------- Request form ---------- */
   var form = document.getElementById('requestForm');
-  var msg = document.getElementById('formMsg');
+  if (form) {
+    var msg = document.getElementById('formMsg');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var valid = true;
-    form.querySelectorAll('[required]').forEach(function (field) {
-      var ok = field.value.trim() !== '';
-      field.classList.toggle('is-invalid', !ok);
-      if (!ok) valid = false;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var valid = true;
+      form.querySelectorAll('[required]').forEach(function (field) {
+        var ok = field.value.trim() !== '';
+        field.classList.toggle('is-invalid', !ok);
+        if (!ok) valid = false;
+      });
+
+      if (!valid) {
+        msg.textContent = 'Please fill in your name, phone number and the service you need.';
+        return;
+      }
+
+      var get = function (id) { return document.getElementById(id).value.trim(); };
+      var text = 'Hi NARTI, I would like to request a service.\n' +
+        'Name: ' + get('rf-name') + '\n' +
+        'Phone: ' + get('rf-phone') + '\n' +
+        'Service: ' + get('rf-service') +
+        (get('rf-date') ? '\nPreferred date: ' + get('rf-date') : '');
+      window.open('https://wa.me/60168210460?text=' + encodeURIComponent(text), '_blank', 'noopener');
+
+      msg.textContent = 'WhatsApp is opening with your details. Press send and we will reply to confirm the visit.';
+      form.reset();
+      var date = document.getElementById('rf-date');
+      date.type = 'text';
     });
 
-    if (!valid) {
-      msg.textContent = 'Please fill in your name, phone number and the service you need.';
-      return;
-    }
-
-    msg.textContent = 'Thank you! Our team will call you shortly to confirm your booking.';
-    form.reset();
-    var date = document.getElementById('rf-date');
-    date.type = 'text';
-  });
-
-  form.querySelectorAll('.field').forEach(function (field) {
-    field.addEventListener('input', function () { field.classList.remove('is-invalid'); });
-  });
+    form.querySelectorAll('.field').forEach(function (field) {
+      field.addEventListener('input', function () { field.classList.remove('is-invalid'); });
+    });
+  }
 
   /* ---------- Scroll reveal ---------- */
   var revealTargets = document.querySelectorAll(
     '.section-head, .about__content, .about__collage, .service-card, .services__intro, ' +
     '.request-form, .request__content, .step, .work-card, .why__content, .why-card, ' +
-    '.faq__img, .faq__content, .post-card, .cta__content'
+    '.faq__img, .faq__content, .post-card, .cta__content, .symptom, .package, .service-link, .included__media'
   );
 
   if ('IntersectionObserver' in window) {
