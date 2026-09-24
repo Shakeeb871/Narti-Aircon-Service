@@ -785,7 +785,7 @@ input[type="date"].field::-webkit-calendar-picker-indicator { filter: invert(1);
 
 @media (max-width: 640px) {
   .section { padding: 64px 0; }
-  .container { padding: 0 16px; }
+  .container { padding-left: 16px; padding-right: 16px; }
   .footer__bottom::before { left: 16px; right: 16px; }
   .section-head { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
   .hero__actions .btn { flex: 1 1 auto; }
@@ -1483,3 +1483,48 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 @media (max-width: 991px) {
   .story__media { margin-top: 0; }
 }
+
+/* ---------- Developer credit ---------- */
+.footer__credit a { color: var(--white); font-weight: 600; }
+.footer__credit a:hover { color: var(--orange); }
+@media (min-width: 992px) {
+  .footer__bottom { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .footer__credit { text-align: center; }
+  .footer__bottom ul { justify-self: end; }
+}
+
+/* ==========================================================================
+   Mobile / tablet: nothing sits flush against the screen edge
+   ========================================================================== */
+@media (max-width: 991px) {
+  /* home hero image becomes an inset card */
+  .hero { padding-bottom: 40px; }
+  .hero__visual {
+    width: auto;
+    margin: 0 24px;
+    border-radius: 14px;
+    clip-path: none;
+    box-shadow: 0 20px 40px rgba(13, 44, 73, .18);
+  }
+
+  /* CTA block becomes an inset card */
+  .cta {
+    margin: 0 24px 60px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(13, 44, 73, .15);
+  }
+  .cta__content { padding: 48px 32px 40px; }
+
+  /* keep the WhatsApp button off the footer text */
+  .footer { padding-bottom: 76px; }
+}
+@media (max-width: 640px) {
+  .hero__visual { margin: 0 16px; border-radius: 12px; }
+  .cta { margin: 0 16px 48px; border-radius: 12px; }
+  .cta__content { padding: 40px 22px 34px; }
+}
+
+/* ---------- Breadcrumbs sit at the bottom of the hero ---------- */
+.breadcrumb--bottom { margin: 28px 0 0; }
+.about-hero .breadcrumb--bottom { margin-top: 26px; }
