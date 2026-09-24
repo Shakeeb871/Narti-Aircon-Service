@@ -112,11 +112,14 @@
       }
 
       var get = function (id) { return document.getElementById(id).value.trim(); };
+      var optional = function (id) { var el = document.getElementById(id); return el && el.value ? el.value.trim() : ''; };
       var text = 'Hi NARTI, I would like to request a service.\n' +
         'Name: ' + get('rf-name') + '\n' +
         'Phone: ' + get('rf-phone') + '\n' +
         'Service: ' + get('rf-service') +
-        (get('rf-date') ? '\nPreferred date: ' + get('rf-date') : '');
+        (get('rf-date') ? '\nPreferred date: ' + get('rf-date') : '') +
+        (optional('rf-area') ? '\nArea: ' + optional('rf-area') : '') +
+        (optional('rf-msg') ? '\nDetails: ' + optional('rf-msg') : '');
       window.open('https://wa.me/60168210460?text=' + encodeURIComponent(text), '_blank', 'noopener');
 
       msg.textContent = 'WhatsApp is opening with your details. Press send and we will reply to confirm the visit.';
