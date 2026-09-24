@@ -12,6 +12,7 @@ Plain HTML, CSS and JavaScript. No build step: upload the files and the site wor
 ```
 narti-aircon-service/
 ├── index.html                 # Home page
+├── about/                     # /about/ page (service areas live here)
 ├── aircond-service/           # /aircond-service/ page
 ├── aircond-repair/            # /aircond-repair/ page
 ├── aircond-installation/      # /aircond-installation/ page

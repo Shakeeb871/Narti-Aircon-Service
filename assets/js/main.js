@@ -134,7 +134,8 @@
   var revealTargets = document.querySelectorAll(
     '.section-head, .about__content, .about__collage, .service-card, .services__intro, ' +
     '.request-form, .request__content, .step, .work-card, .why__content, .why-card, ' +
-    '.faq__img, .faq__content, .post-card, .cta__content, .symptom, .package, .service-link, .included__media'
+    '.faq__img, .faq__content, .post-card, .cta__content, .symptom, .package, .service-link, .included__media, ' +
+    '.habit, .tl-item, .work-tile, .promise-card, .promise-item, .story__media, .story__content'
   );
 
   if ('IntersectionObserver' in window) {
@@ -150,6 +151,18 @@
     revealTargets.forEach(function (el) {
       el.classList.add('reveal');
       revealer.observe(el);
+    });
+  }
+
+  /* ---------- Service areas: show / hide the rest ---------- */
+  var areaBtn = document.getElementById('areaMore');
+  var areaList = document.getElementById('areaList');
+  if (areaBtn && areaList) {
+    var moreLabel = areaBtn.textContent;
+    areaBtn.addEventListener('click', function () {
+      var open = areaList.classList.toggle('is-expanded');
+      areaBtn.setAttribute('aria-expanded', String(open));
+      areaBtn.textContent = open ? 'Show fewer areas' : moreLabel;
     });
   }
 
