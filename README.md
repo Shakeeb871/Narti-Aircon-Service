@@ -22,7 +22,7 @@ narti-aircon-service/
 ├── assets/
 │   ├── css/style.css          # All styles (colours and fonts set at the top in :root)
 │   ├── js/main.js             # Mobile menu, FAQ accordion, form, scroll effects
-│   └── images/                # Optimised WebP images used by the site
+│   └── images/                # WebP images; each has -480, -800 and -1536 sizes for srcset
 │       ├── brand/             # logo.png, logo-white.png (footer), favicon.png
 │       ├── hero/              # Hero technician cut-out
 │       ├── about/             # About section collage
