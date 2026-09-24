@@ -14,7 +14,7 @@
   document.querySelectorAll('[data-review]').forEach(function (badge) {
     var cfg = REVIEWS[badge.getAttribute('data-review')];
     if (!cfg) return;
-    if (cfg.url) badge.href = cfg.url;
+    if (cfg.url && badge.tagName === 'A') badge.href = cfg.url;
     if (typeof cfg.rating === 'number') {
       badge.classList.add('has-rating');
       badge.style.setProperty('--rating', cfg.rating);

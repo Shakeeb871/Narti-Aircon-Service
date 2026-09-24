@@ -1845,3 +1845,6 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
   .reviews-cta__text { margin: 0 auto; }
   .reviews-cta__actions .btn { flex: 1 1 100%; }
 }
+.reviews-badge:hover { transform: none; }
+.reviews-cta { grid-template-columns: auto 1fr; }
+@media (max-width: 640px) { .reviews-cta { grid-template-columns: 1fr; } }
