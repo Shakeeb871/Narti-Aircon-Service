@@ -16,6 +16,7 @@ narti-aircon-service/
 ├── aircond-repair/            # /aircond-repair/ page
 ├── aircond-installation/      # /aircond-installation/ page
 ├── aircond-gas-top-up/        # /aircond-gas-top-up/ page
+├── 404.html, .htaccess        # Custom not-found page, caching (Apache hosting)
 ├── sitemap.xml, robots.txt    # For Google Search Console
 ├── assets/
 │   ├── css/style.css          # All styles (colours and fonts set at the top in :root)
@@ -39,6 +40,17 @@ narti-aircon-service/
 - **Phone / address:** the header, footer and contact links repeat on all 5 pages. Search every `index.html` for `+60 16-821 0460` / `60168210460`.
 - **Brand colours:** change `--navy` and `--orange` at the top of `assets/css/style.css`.
 - **Replacing an image:** keep the same file name and folder, or update the `src` in `index.html`.
+
+## Google and Trustpilot ratings
+
+Open `assets/js/main.js` and fill in the `REVIEWS` block at the top:
+
+```js
+google:     { rating: 4.9, count: 52, url: 'https://g.page/r/…/review' },
+trustpilot: { rating: 4.8, count: 20, url: 'https://www.trustpilot.com/review/nartiairconservice.com' }
+```
+
+While `rating` is `null` the badges show "Read our reviews" without stars, so the site never shows a score the business has not earned.
 
 ## Deploying
 

@@ -1034,3 +1034,123 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
   .page-hero .hero__actions .btn { flex: 1 1 100%; }
   .wa-float { right: 16px; bottom: 16px; width: 52px; height: 52px; }
 }
+
+/* ==========================================================================
+   Review ratings (hero)
+   ========================================================================== */
+.ratings { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 10px 16px 10px 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(13, 44, 73, .07);
+  transition: transform .2s, box-shadow .2s;
+}
+.rating:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(13, 44, 73, .12); }
+.rating__logo { flex: 0 0 28px; width: 28px; height: 28px; }
+.rating__body { display: grid; line-height: 1.25; }
+.rating__name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.rating__stars {
+  position: relative;
+  display: inline-block;
+  width: max-content;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #d5dde6;
+  line-height: 1.2;
+}
+.rating__stars-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--rating, 0) / 5 * 100%);
+  overflow: hidden;
+  white-space: nowrap;
+  color: #fbbc04;
+}
+.rating[data-review="trustpilot"] .rating__stars-fill { color: #00b67a; }
+.rating:not(.has-rating) .rating__stars { display: none; }
+.rating__meta { font-size: 12px; color: var(--text); }
+.rating__meta strong { color: var(--ink); }
+
+.ratings--dark .rating { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .16); box-shadow: none; }
+.ratings--dark .rating__name,
+.ratings--dark .rating__meta strong { color: var(--white); }
+.ratings--dark .rating__meta { color: rgba(255, 255, 255, .7); }
+.ratings--dark .rating__stars { color: rgba(255, 255, 255, .22); }
+
+/* ==========================================================================
+   Trust badges
+   ========================================================================== */
+.trust { background: var(--white); border-bottom: 1px solid var(--border); }
+.trust__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+.trust-badge { display: flex; align-items: center; gap: 14px; }
+.trust-badge__seal {
+  flex: 0 0 54px;
+  width: 54px; height: 54px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--navy);
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--orange);
+}
+.trust-badge__seal svg {
+  width: 24px; height: 24px;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.trust-badge__body { display: grid; gap: 2px; line-height: 1.4; }
+.trust-badge__body strong { font-size: 14px; font-weight: 700; color: var(--ink); }
+.trust-badge__body span { font-size: 12.5px; color: var(--text); }
+
+@media (max-width: 991px) {
+  .trust__grid { grid-template-columns: repeat(2, 1fr); gap: 26px 24px; }
+}
+@media (max-width: 480px) {
+  .trust__grid { grid-template-columns: 1fr; gap: 20px; padding-top: 28px; padding-bottom: 28px; }
+  .ratings { gap: 10px; }
+  .rating { flex: 1 1 100%; }
+}
+
+/* ---------- Touch targets on small screens ---------- */
+@media (max-width: 640px) {
+  .footer__col ul { gap: 0; }
+  .footer__col a { display: inline-block; padding: 10px 0; }
+  .post-card__title a { display: block; padding: 4px 0; }
+}
+
+/* ---------- Responsive fixes from audit ---------- */
+@media (max-width: 991px) {
+  /* show the whole technician cut-out instead of cropping his head */
+  .hero__visual {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    clip-path: polygon(0 7%, 100% 0, 100% 100%, 0 100%);
+  }
+  .hero__img { height: 100%; object-fit: contain; object-position: center bottom; }
+  /* long menu stays scrollable on short phones */
+  .nav { max-height: calc(100vh - var(--header-h)); overflow-y: auto; }
+}
+@media (max-width: 480px) {
+  .stats__grid { gap: 20px 16px; }
+  .stat { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .stat__label { font-size: 12.5px; }
+}
+
+/* ---------- 404 page ---------- */
+.page-404 { padding: 110px 0 120px; }
+.page-404__links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 40px; }
+.page-404__links a { color: var(--white); font-weight: 600; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,.3); padding-bottom: 4px; }
+.page-404__links a:hover { color: var(--orange); border-color: var(--orange); }

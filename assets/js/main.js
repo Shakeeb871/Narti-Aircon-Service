@@ -2,6 +2,30 @@
 (function () {
   'use strict';
 
+  /* ---------- Review ratings ----------
+     Put the real numbers from the Google Business Profile and Trustpilot here.
+     Leave rating as null and the badge shows "Read our reviews" instead of stars.
+     Set url to the direct review page once the profiles are live. */
+  var REVIEWS = {
+    google:     { rating: null, count: null, url: '' },
+    trustpilot: { rating: null, count: null, url: '' }
+  };
+
+  document.querySelectorAll('[data-review]').forEach(function (badge) {
+    var cfg = REVIEWS[badge.getAttribute('data-review')];
+    if (!cfg) return;
+    if (cfg.url) badge.href = cfg.url;
+    if (typeof cfg.rating === 'number') {
+      badge.classList.add('has-rating');
+      badge.style.setProperty('--rating', cfg.rating);
+      badge.querySelector('.rating__meta').innerHTML =
+        '<strong>' + cfg.rating.toFixed(1) + '</strong> / 5' +
+        (cfg.count ? ' &middot; ' + cfg.count + ' reviews' : '');
+      badge.setAttribute('aria-label', badge.querySelector('.rating__name').textContent +
+        ': rated ' + cfg.rating.toFixed(1) + ' out of 5');
+    }
+  });
+
   /* ---------- Sticky header shadow ---------- */
   var header = document.querySelector('.header');
   function onScroll() {
@@ -30,23 +54,25 @@
   });
 
   /* ---------- Active nav link on scroll ---------- */
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav__link'))
-    .filter(function (l) { return (l.getAttribute('href') || '').charAt(0) === '#'; });
-  var sections = links
-    .map(function (l) { return document.querySelector(l.getAttribute('href')); })
-    .filter(Boolean);
+  var here = location.pathname.replace(/index\.html$/, '').replace(/\/$/, '');
+  var spyTargets = [];
+  document.querySelectorAll('.nav__link').forEach(function (link) {
+    var parts = (link.getAttribute('href') || '').split('#');
+    if (parts[0].replace(/\/$/, '') !== here) return;
+    var el = document.getElementById(parts[1] || 'home');
+    if (el) spyTargets.push({ link: link, el: el });
+  });
 
-  if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window && spyTargets.length) {
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        var id = '#' + entry.target.id;
-        links.forEach(function (l) {
-          l.classList.toggle('is-active', l.getAttribute('href') === id);
+        spyTargets.forEach(function (t) {
+          t.link.classList.toggle('is-active', t.el === entry.target);
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(function (s) { spy.observe(s); });
+    spyTargets.forEach(function (t) { spy.observe(t.el); });
   }
 
   /* ---------- FAQ accordion ---------- */
