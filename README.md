@@ -42,6 +42,12 @@ narti-aircon-service/
 - **Brand colours:** change `--navy` and `--orange` at the top of `assets/css/style.css`.
 - **Replacing an image:** keep the same file name and folder, or update the `src` in `index.html`.
 
+## Testimonials slider
+
+Paste real Google reviews into `assets/js/reviews.js` (format explained at the top of that file).
+The Testimonials section is hidden while the list is empty and appears on the home page,
+/services/ and all four service pages as soon as one review is added. No build step needed.
+
 ## Google and Trustpilot ratings
 
 Open `assets/js/main.js` and fill in the `REVIEWS` block at the top:
