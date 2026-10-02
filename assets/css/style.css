@@ -1991,3 +1991,36 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 
 /* headings added by JavaScript follow the same Title Case rule */
 .review-card__hl-title, .reviews .section-title { text-transform: capitalize; }
+
+/* ---------- Floating Call Now button (above WhatsApp) ---------- */
+.call-float {
+  position: fixed;
+  right: 22px; bottom: 92px;
+  z-index: 90;
+  height: 56px;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 0 22px 0 18px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 15px; font-weight: 700;
+  box-shadow: 0 10px 25px rgba(243, 112, 33, .35);
+  transition: transform .2s, background-color .2s;
+}
+.call-float:hover { transform: scale(1.05); background: var(--orange-dark); }
+.call-float svg { width: 22px; height: 22px; fill: none; stroke: var(--white); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: call-ring 2.4s ease-in-out infinite; }
+.call-float::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(243, 112, 33, .55);
+  animation: call-pulse 2.4s ease-out infinite;
+}
+@keyframes call-pulse { 0% { box-shadow: 0 0 0 0 rgba(243,112,33,.55); } 70%, 100% { box-shadow: 0 0 0 14px rgba(243,112,33,0); } }
+@keyframes call-ring { 0%, 60%, 100% { transform: rotate(0); } 65%, 75%, 85% { transform: rotate(-14deg); } 70%, 80% { transform: rotate(14deg); } }
+@media (max-width: 640px) {
+  .call-float { right: 16px; bottom: 80px; height: 52px; padding: 0 18px 0 15px; font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .call-float svg, .call-float::before { animation: none; }
+}
+.footer { padding-bottom: 150px; }
+@media (min-width: 992px) { .footer { padding-bottom: 0; } }
