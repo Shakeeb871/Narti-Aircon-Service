@@ -2076,3 +2076,9 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
   fill: none; stroke: var(--white); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round;
 }
 @media (max-width: 480px) { .hero-usps { grid-template-columns: 1fr; } }
+
+/* ---------- Why choose (service pages) ---------- */
+.svc-why__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 991px) { .svc-why__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .svc-why__grid { grid-template-columns: 1fr; } }
+.svc-why .why-card { background: var(--white); border-top-color: var(--orange); box-shadow: 0 6px 20px rgba(13,44,73,.05); } .svc-why .why-card__icon { stroke: var(--orange); }
