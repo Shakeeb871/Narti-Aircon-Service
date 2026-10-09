@@ -2060,3 +2060,19 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 .fix-card__row span { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .fix-card__row--do span { color: var(--orange); }
 @media (max-width: 760px) { .fixes__grid { grid-template-columns: 1fr; } }
+
+/* ---------- Service hero: brighter text + USP checklist ---------- */
+.page-hero__text { color: var(--white); }
+.page-hero__text:first-of-type { font-size: 17px; font-weight: 500; }
+.page-hero .breadcrumb, .page-hero .breadcrumb a { color: rgba(255,255,255,.85); }
+.hero-usps {
+  list-style: none; margin: 24px 0 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px 22px;
+}
+.hero-usps li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; font-weight: 600; line-height: 1.45; color: var(--white); }
+.hero-usps svg {
+  flex: 0 0 20px; width: 20px; height: 20px; padding: 3px; margin-top: 1px;
+  border-radius: 50%; background: var(--orange);
+  fill: none; stroke: var(--white); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round;
+}
+@media (max-width: 480px) { .hero-usps { grid-template-columns: 1fr; } }
