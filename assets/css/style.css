@@ -2165,3 +2165,63 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 @media (max-width: 480px) {
   .signs__grid { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   Why Choose Us cards: same style as the Signs cards (site-wide)
+   ========================================================================== */
+.why-card,
+.svc-why .why-card {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
+  border-radius: 8px;
+  padding: 26px 22px 22px;
+  box-shadow: 0 6px 20px rgba(13, 44, 73, .05);
+}
+.why-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.why-card__num {
+  position: absolute; top: 0; right: 0;
+  min-width: 40px; height: 34px; display: grid; place-items: center;
+  background: var(--orange); color: var(--white);
+  font-size: 13px; font-weight: 700; line-height: 1;
+  border-radius: 0 6px 0 8px;
+}
+.why-card__icon,
+.svc-why .why-card__icon {
+  display: block;
+  width: 56px; height: 56px;
+  padding: 15px;
+  border-radius: 50%;
+  background: var(--navy);
+  stroke: var(--white);
+  stroke-width: 1.8;
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--orange);
+  margin: 2px 0 20px 2px;
+}
+.why-card__title { font-size: 16px; font-weight: 800; }
+
+/* Habits (About) and Send-us (Contact) cards follow the same card style */
+.habit, .send-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
+  border-radius: 8px;
+  padding: 26px 22px 22px;
+}
+.habit__num, .send-card__num {
+  position: absolute; top: 0; right: 0;
+  min-width: 40px; height: 34px; display: grid; place-items: center;
+  background: var(--orange); color: var(--white);
+  font-size: 13px; font-weight: 700; line-height: 1;
+  border-radius: 0 6px 0 8px;
+}
+.habit__icon, .send-card__icon {
+  display: block;
+  width: 56px; height: 56px; padding: 15px;
+  border-radius: 50%; background: var(--navy);
+  stroke: var(--white); stroke-width: 1.8;
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--orange);
+  margin: 2px 0 20px 2px;
+}
+.habit__title, .send-card__title { font-size: 16px; font-weight: 800; }
