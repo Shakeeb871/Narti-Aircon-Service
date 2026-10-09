@@ -2091,3 +2091,34 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 .svc-about__body strong { color: var(--ink); font-weight: 700; }
 .svc-about + .trust { border-top: 1px solid var(--border); }
 @media (max-width: 991px) { .svc-about__grid { grid-template-columns: 1fr; gap: 10px; } }
+
+/* ---------- About the service: text left, image right ---------- */
+.svc-about__grid { grid-template-columns: 1.1fr 0.9fr; align-items: center; }
+.svc-about__intro { font-size: 16px; line-height: 1.8; color: var(--text); margin-bottom: 26px; max-width: 560px; }
+.svc-about__point { display: flex; gap: 18px; padding: 20px 0; border-top: 1px solid var(--border); }
+.svc-about__point:last-child { padding-bottom: 0; }
+.svc-about__num {
+  flex: 0 0 44px; width: 44px; height: 44px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--navy); color: var(--white);
+  font-size: 14px; font-weight: 800;
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--orange);
+}
+.svc-about__point h3 { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+.svc-about__point p { font-size: 15px; line-height: 1.75; color: var(--text); }
+.svc-about__media { position: relative; border-radius: 10px; overflow: visible; }
+.svc-about__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; box-shadow: var(--shadow); border-bottom: 4px solid var(--orange); }
+.svc-about__badge {
+  position: absolute; left: -22px; bottom: 30px;
+  background: var(--orange); color: var(--white);
+  padding: 16px 20px; border-radius: 8px;
+  box-shadow: 0 16px 30px rgba(243,112,33,.35);
+}
+.svc-about__badge strong { display: block; font-size: 22px; font-weight: 800; line-height: 1.1; }
+.svc-about__badge span { font-size: 12.5px; }
+@media (max-width: 991px) {
+  .svc-about__grid { grid-template-columns: 1fr; gap: 36px; }
+  .svc-about__media img { aspect-ratio: 16 / 10; }
+  .svc-about__badge { left: 16px; bottom: 16px; }
+}
+@media (max-width: 640px) { .svc-about__point { gap: 14px; } .svc-about__point h3 { font-size: 16.5px; } }
+.trust + .svc-about { border-top: 0; }
