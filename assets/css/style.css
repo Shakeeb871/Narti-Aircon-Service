@@ -2043,3 +2043,20 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 .coverage { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .coverage li { padding: 7px 14px; border-radius: 999px; background: var(--white); border: 1px solid var(--border); font-size: 12.5px; font-weight: 600; color: var(--ink); }
 @media (max-width: 640px) { .hero-prices li { flex: 1 1 calc(50% - 10px); } }
+
+/* ---------- Problems we solve (service pages) ---------- */
+.fixes__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.fix-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
+  border-radius: 8px;
+  padding: 26px 26px 22px;
+  box-shadow: 0 6px 20px rgba(13, 44, 73, .05);
+}
+.fix-card__title { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 14px; }
+.fix-card__row { font-size: 14px; line-height: 1.7; color: var(--text); }
+.fix-card__row + .fix-card__row { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); }
+.fix-card__row span { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.fix-card__row--do span { color: var(--orange); }
+@media (max-width: 760px) { .fixes__grid { grid-template-columns: 1fr; } }
