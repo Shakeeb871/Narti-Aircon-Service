@@ -2122,3 +2122,46 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 }
 @media (max-width: 640px) { .svc-about__point { gap: 14px; } .svc-about__point h3 { font-size: 16.5px; } }
 .trust + .svc-about { border-top: 0; }
+
+/* ---------- Signs grid (service page) ---------- */
+.signs__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.sign-card {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
+  border-radius: 8px;
+  padding: 26px 20px 22px;
+  box-shadow: 0 6px 20px rgba(13, 44, 73, .05);
+  transition: transform .3s, box-shadow .3s;
+}
+.sign-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.sign-card__num {
+  position: absolute; top: 0; right: 0;
+  min-width: 40px; height: 34px; display: grid; place-items: center;
+  background: var(--orange); color: var(--white);
+  font-size: 13px; font-weight: 700;
+  border-radius: 0 6px 0 8px;
+}
+.sign-card__icon {
+  width: 56px; height: 56px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--navy);
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--orange);
+  margin-bottom: 20px;
+}
+.sign-card__icon svg { width: 26px; height: 26px; fill: none; stroke: var(--white); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sign-card__title { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.sign-card__text { font-size: 13.5px; line-height: 1.65; color: var(--text); }
+@media (max-width: 1100px) {
+  .signs__grid { grid-template-columns: repeat(6, 1fr); }
+  .sign-card { grid-column: span 2; }
+  .sign-card:nth-child(4) { grid-column: 2 / span 2; }
+}
+@media (max-width: 760px) {
+  .signs__grid { grid-template-columns: 1fr 1fr; }
+  .sign-card, .sign-card:nth-child(4) { grid-column: auto; }
+  .sign-card:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .signs__grid { grid-template-columns: 1fr; }
+}
