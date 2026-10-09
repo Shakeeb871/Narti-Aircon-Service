@@ -2237,3 +2237,6 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 }
 .hero-hook--dark { color: var(--navy); }
 .hero-hook + .ratings { margin-top: 22px; }
+
+/* Home about: button spacing once the checklist is gone */
+.about__content .text + .btn { margin-top: 28px; }
