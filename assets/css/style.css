@@ -2240,3 +2240,11 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 
 /* Home about: button spacing once the checklist is gone */
 .about__content .text + .btn { margin-top: 28px; }
+
+/* Hero rating badges: plain (no link), white on every hero */
+div.rating:hover { transform: none; box-shadow: 0 6px 18px rgba(13, 44, 73, .07); }
+.ratings--dark .rating { background: var(--white); border-color: var(--white); box-shadow: 0 6px 18px rgba(0, 0, 0, .18); }
+.ratings--dark .rating__name,
+.ratings--dark .rating__meta strong { color: var(--navy); }
+.ratings--dark .rating__meta { color: var(--text); }
+.ratings--dark .rating__stars { color: rgba(13, 44, 73, .18); }
