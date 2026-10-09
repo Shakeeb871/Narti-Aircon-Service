@@ -2082,3 +2082,12 @@ a.service-card:hover .link-more span { transform: translateX(4px); }
 @media (max-width: 991px) { .svc-why__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .svc-why__grid { grid-template-columns: 1fr; } }
 .svc-why .why-card { background: var(--white); border-top-color: var(--orange); box-shadow: 0 6px 20px rgba(13,44,73,.05); } .svc-why .why-card__icon { stroke: var(--orange); }
+
+/* ---------- About the service (below the H1) ---------- */
+.svc-about__grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 60px; align-items: start; }
+.svc-about__head .section-title { max-width: 440px; }
+.svc-about__body { display: grid; gap: 18px; }
+.svc-about__body p { font-size: 16px; line-height: 1.8; color: var(--text); }
+.svc-about__body strong { color: var(--ink); font-weight: 700; }
+.svc-about + .trust { border-top: 1px solid var(--border); }
+@media (max-width: 991px) { .svc-about__grid { grid-template-columns: 1fr; gap: 10px; } }
