@@ -142,7 +142,8 @@
     '.svc-row, .project-card, .contact-card, .send-card'
   );
 
-  if ('IntersectionObserver' in window) {
+  /* GSAP (motion.js) handles reveals; this is the fallback when it does not load */
+  if ('IntersectionObserver' in window && !(window.gsap && window.ScrollTrigger)) {
     var revealer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
