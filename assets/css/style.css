@@ -2248,3 +2248,13 @@ div.rating:hover { transform: none; box-shadow: 0 6px 18px rgba(13, 44, 73, .07)
 .ratings--dark .rating__meta strong { color: var(--navy); }
 .ratings--dark .rating__meta { color: var(--text); }
 .ratings--dark .rating__stars { color: rgba(13, 44, 73, .18); }
+
+/* Skip link: hidden until a keyboard user tabs to it */
+.skip-link {
+  position: absolute; left: 16px; top: -60px; z-index: 10000;
+  padding: 10px 16px; border-radius: 6px;
+  background: var(--navy); color: var(--white); font-weight: 700; font-size: 14px;
+  transition: top .2s;
+}
+.skip-link:focus { top: 16px; outline: 3px solid var(--orange); outline-offset: 2px; }
+#main { scroll-margin-top: 90px; }
