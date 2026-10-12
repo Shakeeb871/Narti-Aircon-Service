@@ -2639,3 +2639,78 @@ body::after {
 @media (max-width: 640px) {
   .why__cards > .why-card:nth-child(n) .why-card__icon, .svc-why__grid > .why-card:nth-child(n) .why-card__icon { width: 56px; height: 56px; }
 }
+/* GSAP owns transforms while it animates; CSS keeps only colour and shadow transitions on buttons */
+.js-motion .btn { transition: background-color .3s var(--ease), box-shadow .45s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
+
+/* ==========================================================================
+   One accent rule: no hard orange borders on rounded shapes.
+   Top accents become an inset line that follows the radius; image frames get the bezel.
+   ========================================================================== */
+.services__img, .page-hero__media, .svc-row__media, .included__media, .story__media {
+  border-bottom: 0; border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(13, 44, 73, .06), 0 0 0 7px rgba(13, 44, 73, .035), var(--shadow);
+}
+.section--navy .services__img, .page-hero .page-hero__media {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 0 0 7px rgba(255, 255, 255, .04), 0 30px 60px -24px rgba(0, 0, 0, .55);
+}
+.services__img img, .page-hero__media img, .svc-row__media img { border-radius: 0; }
+.svc-about__media img { border-bottom: 0; border-radius: var(--r-lg); box-shadow: 0 0 0 1px rgba(13, 44, 73, .06), 0 0 0 7px rgba(13, 44, 73, .035), var(--shadow); }
+
+.dropdown, .habit, .send-card, .contact-card, .reviews-badge, .review-card, .reviews-cta, .svc-why .why-card, .fix-card, .promise-card, .price-card {
+  border-top: 0;
+}
+.habit, .send-card, .contact-card, .review-card, .promise-card, .reviews-badge {
+  box-shadow: inset 0 3px 0 var(--orange-brand), var(--bezel), var(--shadow-sm);
+}
+.habit:hover, .send-card:hover, .contact-card:hover, .review-card:hover, .promise-card:hover {
+  box-shadow: inset 0 3px 0 var(--orange-brand), 0 0 0 1px rgba(13, 44, 73, .08), 0 0 0 7px rgba(243, 112, 33, .06), var(--shadow);
+}
+.reviews-badge { border-radius: var(--r-md); }
+.dropdown { border-radius: var(--r-md); box-shadow: inset 0 3px 0 var(--orange-brand), 0 0 0 1px rgba(13, 44, 73, .06), var(--shadow-lg); overflow: hidden; }
+
+.work-card__body, .project-card__body, .hero-prices li { border-left: 0; }
+.work-card, .project-card { border-radius: var(--r-md); overflow: hidden; }
+.symptom, .pricing__note { border-left: 0; border-radius: var(--r-md); box-shadow: inset 4px 0 0 var(--orange-brand), var(--bezel), var(--shadow-sm); }
+
+/* ==========================================================================
+   Taste pass: fewer labels, stacked headers, varied layouts
+   ========================================================================== */
+/* Eyebrows only where they add meaning: hero, pricing, FAQ */
+.section:not(.pricing):not(.faq) .eyebrow, .cta .eyebrow { display: none; }
+.eyebrow::before { display: none; }
+.eyebrow { padding: 6px 12px; }
+
+/* Section headers stack: headline first, explainer below */
+.section-head { display: block; margin-bottom: 44px; }
+.section-head > div { max-width: 760px; }
+.section-head__text { max-width: 62ch; margin-top: 14px; font-size: 16px; }
+.section-head .btn { margin-top: 22px; }
+.section-head--center, .section-center .section-head { text-align: center; }
+.section-head--center > div, .section-center .section-head > div, .section-center .section-head__text { margin-left: auto; margin-right: auto; }
+
+/* Other services: full-width link rows instead of three equal cards */
+.service-links { grid-template-columns: 1fr; gap: 12px; }
+.service-link {
+  display: grid; grid-template-columns: 52px 1fr auto; grid-template-areas: "icon title more" "icon text more";
+  column-gap: 20px; row-gap: 4px; align-items: center;
+  border: 0; border-radius: var(--r-md); padding: 22px 26px; background: #fff;
+  box-shadow: var(--bezel), var(--shadow-sm);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.service-link > svg { grid-area: icon; width: 44px; height: 44px; padding: 10px; border-radius: 12px; background: var(--orange-soft); }
+.service-link__title { grid-area: title; margin: 0; font-size: 18px; }
+.service-link__text { grid-area: text; margin: 0; }
+.service-link .link-more { grid-area: more; white-space: nowrap; }
+.service-link:hover { transform: translateX(6px); box-shadow: 0 0 0 1px rgba(13, 44, 73, .08), 0 0 0 7px rgba(243, 112, 33, .06), var(--shadow); }
+@media (max-width: 640px) {
+  .service-link { grid-template-columns: 44px 1fr; grid-template-areas: "icon title" "text text" "more more"; padding: 20px; row-gap: 8px; }
+}
+
+/* Home blog: one lead story and two compact ones */
+@media (min-width: 992px) {
+  .blog__grid { grid-template-columns: 1.35fr 1fr; grid-template-rows: auto auto; }
+  .blog__grid > .post-card:first-child { grid-row: span 2; }
+  .blog__grid > .post-card:first-child .post-card__media img { aspect-ratio: 4 / 3.1; height: 100%; }
+  .blog__grid > .post-card:not(:first-child) { display: grid; grid-template-columns: 42% 1fr; }
+  .blog__grid > .post-card:not(:first-child) .post-card__media img { height: 100%; aspect-ratio: auto; object-fit: cover; }
+}

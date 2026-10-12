@@ -18,9 +18,9 @@
     if (hero) {
       var tl = gsap.timeline({ defaults: { ease: EASE, duration: 1.1 } });
       var heroTitle = hero.querySelector('h1');
-      if (heroTitle) tl.from(heroTitle, { y: 26 }, 0);
-      tl.from($('.eyebrow, .divider', hero).slice(0, 2), { y: 14, opacity: 0, stagger: .08 }, 0)
-        .from($('.hero-hook, .ratings, .hero__actions, .breadcrumb', hero), { y: 22, opacity: 0, stagger: .09 }, .15);
+      if (heroTitle) tl.fromTo(heroTitle, { y: 26 }, { y: 0, clearProps: 'transform' }, 0);
+      tl.fromTo($('.eyebrow, .divider', hero).slice(0, 2), { y: 14, opacity: 0 }, { y: 0, opacity: 1, stagger: .08, clearProps: 'transform' }, 0)
+        .fromTo($('.hero-hook, .ratings, .hero__actions, .breadcrumb', hero), { y: 22, opacity: 0 }, { y: 0, opacity: 1, stagger: .09, clearProps: 'transform' }, .15);
       var visual = hero.querySelector('.hero__img, .page-hero__media img, .about-hero__bg img');
       if (visual) tl.from(visual, { scale: 1.08, duration: 1.6 }, 0);
       var stripe = hero.querySelector('.hero__stripe');
@@ -32,8 +32,8 @@
     /* ---------- Section headings ---------- */
     $('.section-head, .services__intro, .why__content, .faq__content > .eyebrow, .faq__content > .section-title, .request__content, .svc-about__content > .eyebrow, .svc-about__content > .section-title, .svc-about__intro, .about__content, .cta__content').forEach(function (el) {
       var kids = el.children.length > 1 ? Array.prototype.slice.call(el.children) : [el];
-      gsap.from(kids, {
-        y: 30, opacity: 0, duration: 1, ease: EASE, stagger: .08,
+      gsap.fromTo(kids, { y: 30, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1, ease: EASE, stagger: .08, clearProps: 'transform',
         scrollTrigger: { trigger: el, start: 'top 85%', once: true }
       });
     });
@@ -53,7 +53,7 @@
       ScrollTrigger.batch(items, {
         start: 'top 88%', once: true,
         onEnter: function (batch) {
-          gsap.to(batch, { y: 0, opacity: 1, duration: .95, ease: EASE, stagger: .09, overwrite: true });
+          gsap.to(batch, { y: 0, opacity: 1, duration: .95, ease: EASE, stagger: .09, overwrite: true, clearProps: 'transform' });
         }
       });
     });
