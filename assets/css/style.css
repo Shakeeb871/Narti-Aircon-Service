@@ -2534,3 +2534,108 @@ body::after {
 /* Stats card keeps a side gutter on every width */
 .stats .stats__grid { width: min(var(--container), calc(100% - 32px)); margin-left: auto; margin-right: auto; }
 @media (max-width: 991px) { .stats { padding: 0; } }
+
+/* ==========================================================================
+   Bento: Why Choose (home 4 cards, service pages 6 cards)
+   ========================================================================== */
+.why__cards, .svc-why__grid { display: grid; gap: 18px; grid-auto-flow: dense; }
+.why__cards { grid-template-columns: repeat(2, 1fr); }
+.svc-why__grid { grid-template-columns: repeat(3, 1fr); }
+.why-card { display: flex; flex-direction: column; align-items: flex-start; padding: 26px 24px; background: #fff; }
+
+/* Wide cards: icon left, text right */
+.why__cards > .why-card:nth-child(1), .why__cards > .why-card:nth-child(4),
+.svc-why__grid > .why-card:nth-child(1), .svc-why__grid > .why-card:nth-child(4), .svc-why__grid > .why-card:nth-child(5) {
+  grid-column: span 2;
+  display: grid; grid-template-columns: auto 1fr; column-gap: 22px; align-items: center; align-content: center;
+}
+.why__cards > .why-card:nth-child(1) .why-card__icon, .why__cards > .why-card:nth-child(4) .why-card__icon,
+.svc-why__grid > .why-card:nth-child(1) .why-card__icon, .svc-why__grid > .why-card:nth-child(4) .why-card__icon, .svc-why__grid > .why-card:nth-child(5) .why-card__icon {
+  grid-row: span 2; margin: 0; width: 64px; height: 64px;
+}
+.why__cards > .why-card:nth-child(1) .why-card__title, .svc-why__grid > .why-card:nth-child(1) .why-card__title { font-size: 20px; }
+
+/* Featured: navy with an orange glow */
+.why__cards > .why-card:nth-child(1), .svc-why__grid > .why-card:nth-child(1) {
+  background: radial-gradient(420px 220px at 100% 0%, rgba(243, 112, 33, .28), transparent 70%), linear-gradient(140deg, var(--navy-700), var(--navy-900));
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06) inset, 0 0 0 7px rgba(13, 44, 73, .06), var(--shadow);
+  min-height: 190px;
+}
+.why__cards > .why-card:nth-child(1) .why-card__title, .svc-why__grid > .why-card:nth-child(1) .why-card__title { color: #fff; }
+.why__cards > .why-card:nth-child(1) .why-card__text, .svc-why__grid > .why-card:nth-child(1) .why-card__text { color: rgba(255, 255, 255, .78); font-size: 14px; }
+.why__cards > .why-card:nth-child(1)::before, .svc-why__grid > .why-card:nth-child(1)::before { display: none; }
+.why__cards > .why-card:nth-child(1) .why-card__icon, .svc-why__grid > .why-card:nth-child(1) .why-card__icon {
+  background: rgba(255, 255, 255, .08); box-shadow: 0 0 0 3px rgba(255, 255, 255, .08), 0 0 0 6px rgba(243, 112, 33, .55);
+}
+
+/* Soft accent card */
+.why__cards > .why-card:nth-child(4), .svc-why__grid > .why-card:nth-child(4) {
+  background: linear-gradient(135deg, var(--orange-soft), #fff 75%);
+}
+
+/* Home: text block sits beside the bento, image becomes a slim band */
+.why__grid { align-items: center; }
+
+@media (max-width: 991px) {
+  .svc-why__grid { grid-template-columns: repeat(2, 1fr); }
+  .svc-why__grid > .why-card:nth-child(5) { grid-column: span 1; display: flex; }
+  .svc-why__grid > .why-card:nth-child(5) .why-card__icon { grid-row: auto; width: auto; height: auto; margin-bottom: 14px; }
+}
+@media (max-width: 640px) {
+  .why__cards, .svc-why__grid { grid-template-columns: 1fr; }
+  .why__cards > .why-card, .svc-why__grid > .why-card { grid-column: auto !important; }
+  .why__cards > .why-card:nth-child(n), .svc-why__grid > .why-card:nth-child(n) { display: flex; }
+  .why-card .why-card__icon { margin-bottom: 14px !important; }
+}
+
+/* ==========================================================================
+   How It Works: a line that fills as you scroll
+   ========================================================================== */
+.steps__grid { position: relative; padding-top: 44px; }
+.steps__grid::before, .steps__progress {
+  content: ""; position: absolute; top: 12px; left: 22px; right: 22px; height: 3px; border-radius: 3px;
+}
+.steps__grid::before { background: rgba(13, 44, 73, .1); }
+.steps__progress { background: linear-gradient(90deg, var(--orange-brand), var(--orange)); transform-origin: left center; transform: scaleX(1); }
+.step { overflow: visible; }
+.step::after {
+  content: ""; position: absolute; top: -40px; left: 14px; width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 0 3px var(--orange-brand), 0 0 0 8px rgba(243, 112, 33, .14);
+}
+.step { position: relative; }
+.step__media { overflow: hidden; border-radius: var(--r-md) var(--r-md) 0 0; }
+@media (max-width: 991px) {
+  .steps__grid { padding-top: 0; }
+  .steps__grid::before, .steps__progress, .step::after { display: none; }
+}
+
+/* ==========================================================================
+   Areas ticker (home)
+   ========================================================================== */
+.areas-ticker { padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; background: #fff; }
+.areas-ticker__label { display: none; }
+.areas-ticker__track { display: flex; width: max-content; animation: ticker 60s linear infinite; }
+.areas-ticker:hover .areas-ticker__track { animation-play-state: paused; }
+.areas-ticker__list { display: flex; gap: 0; margin: 0; padding: 0; list-style: none; }
+.areas-ticker__list li { display: inline-flex; align-items: center; gap: 14px; padding: 0 22px; font-weight: 700; font-size: 15px; color: var(--ink); white-space: nowrap; }
+.areas-ticker__list li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange-brand); box-shadow: 0 0 0 4px rgba(243, 112, 33, .15); }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .areas-ticker__track { animation: none; } }
+/* Bento fixes */
+.svc-why__grid > .why-card:nth-child(1), .why__cards > .why-card:nth-child(1) { border-top: 0; }
+@media (max-width: 991px) {
+  .svc-why__grid > .why-card:nth-child(5) .why-card__icon { width: 56px; height: 56px; }
+}
+@media (max-width: 640px) {
+  .why__cards > .why-card, .svc-why__grid > .why-card { align-items: flex-start; text-align: left; }
+  .why__cards > .why-card .why-card__icon, .svc-why__grid > .why-card .why-card__icon { width: 56px; height: 56px; grid-row: auto; }
+}
+@media (max-width: 991px) {
+  .svc-why__grid > .why-card:nth-child(5) { align-items: flex-start; text-align: left; }
+}
+@media (max-width: 640px) {
+  .why__cards > .why-card:nth-child(n), .svc-why__grid > .why-card:nth-child(n) { align-items: flex-start; text-align: left; }
+}
+@media (max-width: 640px) {
+  .why__cards > .why-card:nth-child(n) .why-card__icon, .svc-why__grid > .why-card:nth-child(n) .why-card__icon { width: 56px; height: 56px; }
+}

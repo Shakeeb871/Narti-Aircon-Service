@@ -58,6 +58,27 @@
       });
     });
 
+    /* ---------- How It Works: progress line fills with scroll ---------- */
+    $('.steps__grid').forEach(function (grid) {
+      if (window.innerWidth < 992) return;
+      var bar = document.createElement('span');
+      bar.className = 'steps__progress';
+      grid.appendChild(bar);
+      gsap.fromTo(bar, { scaleX: 0 }, {
+        scaleX: 1, ease: 'none',
+        scrollTrigger: { trigger: grid, start: 'top 75%', end: 'bottom 60%', scrub: .5 }
+      });
+    });
+
+    /* ---------- Heading underline draws in ---------- */
+    $('main .divider').forEach(function (d) {
+      if (d.closest('.hero, .page-hero, .about-hero')) return;
+      gsap.fromTo(d, { scaleX: 0, transformOrigin: 'left center' }, {
+        scaleX: 1, duration: 1.1, ease: EASE,
+        scrollTrigger: { trigger: d, start: 'top 90%', once: true }
+      });
+    });
+
     /* ---------- Images drift slightly as you scroll ---------- */
     $('.svc-about__media, .why__img, .about__collage, .faq__img, .story__img').forEach(function (el) {
       gsap.fromTo(el, { y: 30 }, {
