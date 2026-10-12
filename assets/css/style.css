@@ -2531,3 +2531,6 @@ body::after {
 .review-card__verified { color: #1d5fa8; }
 .tl-item--now .tl-item__dot { background: var(--accent-btn); }
 .package__title small { color: var(--orange-dark); }
+/* Stats card keeps a side gutter on every width */
+.stats .stats__grid { width: min(var(--container), calc(100% - 32px)); margin-left: auto; margin-right: auto; }
+@media (max-width: 991px) { .stats { padding: 0; } }
