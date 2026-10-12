@@ -44,7 +44,7 @@
       '.steps__grid > *', '.work__grid > *', '.blog__grid > *', '.pricing__grid > *', '.svc-about__point',
       '.accordion__item', '.price-row', '.contact-cards > *', '.habits__grid > *', '.promise-list > *',
       '.projects__grid > *', '.work-tiles > *', '.svc-rows > *', '.about-stats__grid > *', '.packages > *',
-      '.area-list > *', '.footer__grid > *'
+      '.area-list > :not(.area-chip--extra)', '.footer__grid > *'
     ];
     groups.forEach(function (sel) {
       var items = $(sel);
