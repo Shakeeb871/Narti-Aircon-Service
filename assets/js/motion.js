@@ -64,8 +64,17 @@
       var bar = document.createElement('span');
       bar.className = 'steps__progress';
       grid.appendChild(bar);
+      var steps = $('.step', grid);
+      var mark = function () {
+        var g = grid.getBoundingClientRect();
+        var tip = bar.getBoundingClientRect().right;
+        steps.forEach(function (st) {
+          var dot = st.getBoundingClientRect().left + 23;
+          st.classList.toggle('is-reached', tip >= dot - 2 && bar.getBoundingClientRect().width > 1);
+        });
+      };
       gsap.fromTo(bar, { scaleX: 0 }, {
-        scaleX: 1, ease: 'none',
+        scaleX: 1, ease: 'none', onUpdate: mark,
         scrollTrigger: { trigger: grid, start: 'top 75%', end: 'bottom 60%', scrub: .5 }
       });
     });

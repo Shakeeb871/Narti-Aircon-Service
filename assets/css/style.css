@@ -2802,3 +2802,16 @@ body::after {
 .service-link .link-more { align-self: flex-start; }
 .service-link .service-link__title { text-align: left; align-self: stretch; }
 .why-card__title, .sign-card__title, .why-card__text, .sign-card__text, .service-link__title { text-wrap: wrap; }
+
+/* How It Works: dots sit above the line and fill when the line reaches them */
+.steps__grid::before, .steps__progress { z-index: 0; }
+.steps__grid > .step { z-index: 1; }
+.step::after {
+  z-index: 2; background: #fff;
+  transition: background-color .35s var(--ease), box-shadow .35s var(--ease), transform .35s var(--ease);
+}
+.step.is-reached::after {
+  background: var(--orange-brand);
+  box-shadow: 0 0 0 3px var(--orange-brand), 0 0 0 9px rgba(243, 112, 33, .2);
+  transform: scale(1.1);
+}
