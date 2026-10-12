@@ -2714,3 +2714,91 @@ body::after {
   .blog__grid > .post-card:not(:first-child) { display: grid; grid-template-columns: 42% 1fr; }
   .blog__grid > .post-card:not(:first-child) .post-card__media img { height: 100%; aspect-ratio: auto; object-fit: cover; }
 }
+
+/* ==========================================================================
+   CARD SYSTEM v3: one quiet, elegant card everywhere
+   1px hairline, soft tinted shadow, lift on hover. No rings, no strips, no tabs.
+   ========================================================================== */
+:root {
+  --line: #e3eaf1;
+  --bezel: 0 0 0 0 transparent;
+  --card-shadow: 0 1px 2px rgba(13, 44, 73, .04), 0 10px 28px -18px rgba(13, 44, 73, .22);
+  --card-hover: 0 2px 4px rgba(13, 44, 73, .04), 0 26px 50px -26px rgba(13, 44, 73, .34);
+}
+.why-card, .sign-card, .price-card, .review-card, .post-card, .step, .project-card, .contact-card, .send-card,
+.habit, .promise-card, .package, .service-link, .work-card, .reviews-badge, .rating, .hero-hook--dark, .symptom, .pricing__note, .dropdown {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); box-shadow: var(--card-shadow);
+}
+.why-card:hover, .sign-card:hover, .review-card:hover, .post-card:hover, .step:hover, .project-card:hover, .contact-card:hover,
+.send-card:hover, .habit:hover, .promise-card:hover, .service-link:hover, .work-card:hover {
+  transform: translateY(-4px); box-shadow: var(--card-hover); border-color: rgba(201, 81, 14, .35);
+}
+.why-card::before, .sign-card::before { display: none !important; }
+
+/* Why + Signs: identical structure */
+.why-card, .sign-card { padding: 28px 26px 26px; position: relative; overflow: hidden; }
+.why-card__num, .sign-card__num {
+  position: absolute; top: 22px; right: 24px; padding: 0; background: none !important; border-radius: 0;
+  color: #b3c0cc; font-size: 13px; font-weight: 700; letter-spacing: .06em; font-variant-numeric: tabular-nums;
+}
+.why-card__icon, .svc-why .why-card__icon, .sign-card__icon {
+  width: 52px; height: 52px; padding: 14px; margin: 0 0 22px; border-radius: 14px;
+  background: var(--navy); stroke: #fff; box-shadow: none !important; transform: none;
+  transition: background-color .4s var(--ease), transform .5s var(--ease);
+}
+.why-card:hover .why-card__icon, .sign-card:hover .sign-card__icon { background: var(--accent-btn); transform: translateY(-2px); }
+.why-card__title, .sign-card__title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.why-card__text, .sign-card__text { font-size: 14px; line-height: 1.65; }
+
+/* Undo the bento: equal, calm grids */
+.why__cards { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.svc-why__grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.why__cards > .why-card:nth-child(n), .svc-why__grid > .why-card:nth-child(n) {
+  grid-column: auto; display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+  background: #fff; min-height: 0; box-shadow: var(--card-shadow); border-top: 1px solid var(--line);
+}
+.why__cards > .why-card:nth-child(n):hover, .svc-why__grid > .why-card:nth-child(n):hover { box-shadow: var(--card-hover); border-color: rgba(201, 81, 14, .35); }
+.why__cards > .why-card:nth-child(n) .why-card__icon, .svc-why__grid > .why-card:nth-child(n) .why-card__icon { width: 52px; height: 52px; grid-row: auto; margin: 0 0 22px; }
+.why__cards > .why-card:nth-child(n) .why-card__title, .svc-why__grid > .why-card:nth-child(n) .why-card__title { color: var(--ink); font-size: 17px; }
+.why__cards > .why-card:nth-child(n) .why-card__text, .svc-why__grid > .why-card:nth-child(n) .why-card__text { color: var(--text); font-size: 14px; }
+@media (max-width: 991px) { .svc-why__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .why__cards, .svc-why__grid { grid-template-columns: 1fr; } }
+
+/* Other services: three photo cards */
+.service-links { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.service-link { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+.service-link__media { display: block; overflow: hidden; }
+.service-link__media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .9s var(--ease); }
+.service-link:hover .service-link__media img { transform: scale(1.05); }
+.service-link > svg { display: none; }
+.service-link__title { margin: 22px 24px 6px; font-size: 18px; }
+.service-link__text { margin: 0 24px 18px; }
+.service-link .link-more { margin: auto 24px 24px; }
+.service-link:hover { transform: translateY(-4px); }
+@media (max-width: 991px) { .service-links { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .service-links { grid-template-columns: 1fr; } }
+
+/* Containers lose their outer rings, keep a soft shadow */
+.stats .stats__grid { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06), var(--shadow-lg); }
+.request-form, .price-includes { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06), var(--shadow-lg); }
+.services__img, .page-hero__media, .svc-row__media, .included__media, .story__media, .svc-about__media img { box-shadow: var(--shadow); }
+.section--navy .services__img, .page-hero .page-hero__media { box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .55); }
+.ratings--dark .rating { border: 0; box-shadow: 0 12px 24px -12px rgba(0, 0, 0, .45); }
+.svc-about__badge { box-shadow: var(--shadow); }
+.symptom, .pricing__note { box-shadow: var(--card-shadow); }
+
+/* Home hero on wide screens: the visual stays a bounded panel next to the copy */
+@media (min-width: 1500px) {
+  .hero__visual {
+    width: calc(var(--container) / 2 + 140px);
+    right: calc((100vw - var(--container)) / 2 - 140px);
+    top: 24px; bottom: 24px; border-radius: 0 28px 28px 0;
+  }
+  .hero__img { width: 100%; object-position: center bottom; }
+}
+.why__cards > .why-card:nth-child(n) .why-card__icon, .svc-why__grid > .why-card:nth-child(n) .why-card__icon { background: var(--navy); box-shadow: none; }
+.why__cards > .why-card:nth-child(n):hover .why-card__icon, .svc-why__grid > .why-card:nth-child(n):hover .why-card__icon { background: var(--accent-btn); }
+.service-link, .service-link__title, .service-link__text { text-align: left; }
+.service-link .link-more { align-self: flex-start; }
+.service-link .service-link__title { text-align: left; align-self: stretch; }
+.why-card__title, .sign-card__title, .why-card__text, .sign-card__text, .service-link__title { text-wrap: wrap; }
