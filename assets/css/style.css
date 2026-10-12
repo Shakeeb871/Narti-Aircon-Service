@@ -2815,3 +2815,52 @@ body::after {
   box-shadow: 0 0 0 3px var(--orange-brand), 0 0 0 9px rgba(243, 112, 33, .2);
   transform: scale(1.1);
 }
+
+/* ==========================================================================
+   Section rhythm v2: neighbours never share a background, one even gap
+   ========================================================================== */
+:root { --sec-gap: 76px; }
+@media (max-width: 991px) { :root { --sec-gap: 60px; } }
+@media (max-width: 640px) { :root { --sec-gap: 48px; } }
+main section.section { padding-top: var(--sec-gap) !important; padding-bottom: var(--sec-gap) !important; }
+.tone-white { background: #fff; }
+.tone-ice {
+  background:
+    radial-gradient(800px 380px at 100% 0%, rgba(214, 228, 241, .65), transparent 70%),
+    radial-gradient(600px 300px at 0% 100%, rgba(253, 240, 230, .55), transparent 70%),
+    #f2f6fa;
+}
+.trust { background: #fff; border-bottom: 1px solid var(--line); padding: 28px 0 !important; }
+.reviews.tone-ice, .reviews.tone-white { overflow: hidden; }
+
+/* Testimonials header: title left, rating badge right */
+.reviews .section-head.reviews__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+.reviews .reviews-badge { flex: none; margin: 0; }
+@media (max-width: 640px) { .reviews .section-head.reviews__head { align-items: flex-start; } }
+
+/* Mid-page CTA band (service pages) */
+.cta-strip {
+  background: radial-gradient(520px 260px at 100% 0%, rgba(243, 112, 33, .28), transparent 70%), linear-gradient(120deg, var(--navy-700), var(--navy-950));
+  padding: 38px 0; color: #fff;
+}
+.cta-strip__inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.cta-strip__title { color: #fff; font-size: 26px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; }
+.cta-strip__text { color: rgba(255, 255, 255, .78); margin: 0; max-width: 56ch; }
+.cta-strip__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 640px) { .cta-strip__actions, .cta-strip__actions .btn { width: 100%; } .cta-strip__title { font-size: 22px; } }
+
+/* Same card recipe for About habits, Contact cards and send-cards */
+.habit, .send-card, .contact-card { padding: 28px 26px 26px; position: relative; text-align: left; box-shadow: var(--card-shadow) !important; border: 1px solid var(--line) !important; }
+.habit:hover, .send-card:hover, .contact-card:hover { box-shadow: var(--card-hover) !important; border-color: rgba(201, 81, 14, .35) !important; }
+.habit__num, .send-card__num {
+  position: absolute; top: 22px; right: 24px; padding: 0; background: none !important; border-radius: 0;
+  color: #b3c0cc; font-size: 13px; font-weight: 700; letter-spacing: .06em;
+}
+.habit__icon, .send-card__icon, .contact-card__icon {
+  width: 52px; height: 52px; padding: 14px; margin: 0 0 22px; border-radius: 14px;
+  background: var(--navy); stroke: #fff; box-shadow: none !important;
+  transition: background-color .4s var(--ease);
+}
+.habit:hover .habit__icon, .send-card:hover .send-card__icon, .contact-card:hover .contact-card__icon { background: var(--accent-btn); }
+.habit__title, .send-card__title { font-size: 17px; font-weight: 700; }
+.why-card__num, .sign-card__num, .habit__num, .send-card__num { color: #6f8295 !important; }
