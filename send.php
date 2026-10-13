@@ -68,6 +68,22 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(false, 'Please enter a valid email address, or leave it empty.', $isAjax);
 }
 
+/* Save the lead first, so it is never lost even if the email fails */
+require_once __DIR__ . '/leads/db.php';
+$leadId = null;
+$db = narti_db();
+if ($db) {
+    try {
+        $st = $db->prepare('INSERT INTO leads (created_at, service, name, phone, address, email, message, page, ip, email_sent)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)');
+        $st->execute([date('Y-m-d H:i:s'), $service, $name, $phone, $address, $email, $message, $page,
+                      substr((string)($_SERVER['REMOTE_ADDR'] ?? ''), 0, 45)]);
+        $leadId = (int)$db->lastInsertId();
+    } catch (Throwable $e) {
+        error_log('NARTI lead save: ' . $e->getMessage());
+    }
+}
+
 $subject = 'New aircond enquiry: ' . ($service !== '' ? $service : 'Website') . ' - ' . $name;
 $body  = "New enquiry from the website\n";
 $body .= "--------------------------------\n";
@@ -90,6 +106,11 @@ $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 $sent = mail(TO_EMAIL, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . FROM_EMAIL);
 
-respond($sent, $sent
+if ($db && $leadId) {
+    try { $db->prepare('UPDATE leads SET email_sent = ? WHERE id = ?')->execute([$sent ? 1 : 0, $leadId]); } catch (Throwable $e) {}
+}
+$ok = $sent || $leadId;
+
+respond((bool)$ok, $ok
     ? 'Thank you. Your request has been sent and our team will contact you shortly.'
     : 'Sorry, the request could not be sent. Please call or WhatsApp us instead.', $isAjax);

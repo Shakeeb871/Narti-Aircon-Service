@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /source-images/
+Disallow: /leads/
+Disallow: /server-config/
 Disallow: /docs/
 
 Sitemap: https://nartiairconservice.com/sitemap.xml
