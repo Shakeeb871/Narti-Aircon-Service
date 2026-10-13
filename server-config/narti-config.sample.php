@@ -19,8 +19,8 @@ return [
     // Email sending (recommended). Create the mailbox in cPanel > Email Accounts first.
     'smtp_host' => 'mail.nartiairconservice.com',
     'smtp_port' => 465,
-    'smtp_user' => 'noreply@nartiairconservice.com',
+    'smtp_user' => 'info@nartiairconservice.com',
     'smtp_pass' => 'PUT-THE-MAILBOX-PASSWORD-HERE',
-    'smtp_from' => 'noreply@nartiairconservice.com',
+    'smtp_from' => 'info@nartiairconservice.com',
     'notify_email' => 'shujaatshakeeb26@gmail.com',
 ];

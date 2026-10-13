@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 const TO_EMAIL   = 'shujaatshakeeb26@gmail.com';
-const FROM_EMAIL = 'noreply@nartiairconservice.com';
+const FROM_EMAIL = 'info@nartiairconservice.com';
 const SITE_NAME  = 'NARTI Aircon Service';
 
 $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'fetch';
