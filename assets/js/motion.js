@@ -23,6 +23,8 @@
         .fromTo($('.hero-hook, .ratings, .hero__actions, .breadcrumb', hero), { y: 22, opacity: 0 }, { y: 0, opacity: 1, stagger: .09, clearProps: 'transform' }, .15);
       var visual = hero.querySelector('.hero__img, .page-hero__media img, .about-hero__bg img');
       if (visual) tl.from(visual, { scale: 1.08, duration: 1.6 }, 0);
+      var lead = hero.querySelector('.lead-card');
+      if (lead) tl.fromTo(lead, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, clearProps: 'transform' }, .1);
       var stripe = hero.querySelector('.hero__stripe');
       if (stripe) tl.from(stripe, { xPercent: 18, opacity: 0, duration: 1.4 }, .05);
       var facts = $('.about-facts li', hero);

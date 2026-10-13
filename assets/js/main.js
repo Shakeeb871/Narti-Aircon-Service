@@ -133,6 +133,46 @@
     });
   }
 
+  /* ---------- Lead form (service page hero) -> send.php -> email ---------- */
+  document.querySelectorAll('.lead-form').forEach(function (form) {
+    var msg = form.querySelector('.lead-form__msg');
+    var btn = form.querySelector('.lead-form__submit');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var ok = true;
+      form.querySelectorAll('[required]').forEach(function (f) {
+        var bad = f.value.trim() === '';
+        f.classList.toggle('is-invalid', bad);
+        if (bad) ok = false;
+      });
+      var em = form.querySelector('[name=email]');
+      if (em.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())) { em.classList.add('is-invalid'); ok = false; }
+      else em.classList.remove('is-invalid');
+      if (!ok) { msg.className = 'lead-form__msg is-error'; msg.textContent = 'Please fill in your name, phone, address and the issue.'; return; }
+      btn.disabled = true; btn.classList.add('is-loading');
+      msg.className = 'lead-form__msg'; msg.textContent = 'Sending...';
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'X-Requested-With': 'fetch' } })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (d) {
+          if (d && d.ok) {
+            msg.className = 'lead-form__msg is-ok';
+            msg.textContent = d.message || 'Thank you. Your request has been sent.';
+            form.reset();
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'lead_form_submit', form_service: form.querySelector('[name=service]').value });
+          } else {
+            msg.className = 'lead-form__msg is-error';
+            msg.textContent = (d && d.message) || 'Sorry, the request could not be sent. Please call or WhatsApp us instead.';
+          }
+        })
+        .catch(function () {
+          msg.className = 'lead-form__msg is-error';
+          msg.textContent = 'Connection problem. Please try again, or call or WhatsApp us.';
+        })
+        .then(function () { btn.disabled = false; btn.classList.remove('is-loading'); });
+    });
+  });
+
   /* ---------- Scroll reveal ---------- */
   var revealTargets = document.querySelectorAll(
     '.section-head, .about__content, .about__collage, .service-card, .services__intro, ' +

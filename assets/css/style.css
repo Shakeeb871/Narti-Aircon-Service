@@ -2864,3 +2864,39 @@ main section.section { padding-top: var(--sec-gap) !important; padding-bottom: v
 .habit:hover .habit__icon, .send-card:hover .send-card__icon, .contact-card:hover .contact-card__icon { background: var(--accent-btn); }
 .habit__title, .send-card__title { font-size: 17px; font-weight: 700; }
 .why-card__num, .sign-card__num, .habit__num, .send-card__num { color: #6f8295 !important; }
+
+/* ==========================================================================
+   Lead form card (service page hero)
+   ========================================================================== */
+.page-hero__grid { grid-template-columns: 1.1fr .9fr; align-items: center; }
+.lead-card {
+  background: #fff; border-radius: var(--r-lg); padding: 30px 30px 26px;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .6); position: relative;
+}
+.lead-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; border-radius: var(--r-lg) var(--r-lg) 0 0; background: linear-gradient(90deg, var(--orange-brand), #f9a271); }
+.lead-card__title { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; margin: 0 0 6px; }
+.lead-card__text { font-size: 14px; color: var(--text); margin: 0 0 18px; line-height: 1.55; }
+.lead-form { display: grid; gap: 12px; }
+.lead-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lead-field { display: grid; gap: 5px; }
+.lead-field span { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+.lead-field em { font-style: normal; font-weight: 500; color: var(--muted); }
+.lead-field input, .lead-field textarea {
+  width: 100%; height: 42px; padding: 0 13px; border: 1px solid #d5dfe9; border-radius: 10px;
+  background: #f8fafc; color: var(--ink); font: inherit; font-size: 14px;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease), background-color .2s var(--ease);
+}
+.lead-field textarea { height: auto; min-height: 78px; padding: 10px 13px; resize: vertical; line-height: 1.5; }
+.lead-field input:focus, .lead-field textarea:focus { outline: none; border-color: var(--accent-btn); background: #fff; box-shadow: 0 0 0 3px rgba(191, 76, 12, .15); }
+.lead-field .is-invalid { border-color: #c0392b; background: #fff6f5; }
+.lead-form__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.lead-form__submit { height: 46px; margin-top: 4px; }
+.lead-form__submit.is-loading { opacity: .7; pointer-events: none; }
+.lead-form__msg { margin: 0; font-size: 13px; min-height: 18px; color: var(--text); }
+.lead-form__msg.is-ok { color: #1e7a3c; font-weight: 600; }
+.lead-form__msg.is-error { color: #b42318; font-weight: 600; }
+@media (max-width: 991px) { .page-hero__grid { grid-template-columns: 1fr; } .lead-card { max-width: 560px; } }
+@media (max-width: 480px) { .lead-form__row { grid-template-columns: 1fr; } .lead-card { padding: 24px 20px 20px; } }
+.lead-card { overflow: hidden; padding-bottom: 22px; }
+.lead-card::before { border-radius: 0; }
+.lead-form__msg:empty { display: none; }
