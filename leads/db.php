@@ -4,15 +4,25 @@
 
 declare(strict_types=1);
 
+function narti_config_paths(): array {
+    $site = dirname(__DIR__);                                   // website folder (where index.html lives)
+    $home = getenv('HOME') ?: (function_exists('posix_getpwuid') ? (posix_getpwuid(posix_geteuid())['dir'] ?? '') : '');
+    $docRoot = rtrim((string)($_SERVER['DOCUMENT_ROOT'] ?? ''), '/');
+    $paths = [
+        dirname($site) . '/narti-config.php',                   // one level above the website folder
+        $docRoot !== '' ? dirname($docRoot) . '/narti-config.php' : '',
+        $home !== '' ? rtrim($home, '/') . '/narti-config.php' : '',
+        dirname($site, 2) . '/narti-config.php',                // two levels above
+        $site . '/private/narti-config.php',                    // fallback inside a blocked folder
+    ];
+    return array_values(array_unique(array_filter($paths)));
+}
+
 function narti_config(): ?array {
     static $cfg = false;
     if ($cfg !== false) return $cfg;
-    $paths = [
-        dirname(__DIR__, 2) . '/narti-config.php',   // /home/user/narti-config.php (site folder is one level below)
-        dirname(__DIR__) . '/../narti-config.php',
-    ];
-    foreach ($paths as $p) {
-        if (is_file($p)) { $c = require $p; $cfg = is_array($c) ? $c : null; return $cfg; }
+    foreach (narti_config_paths() as $p) {
+        if (@is_file($p) && @is_readable($p)) { $c = require $p; $cfg = is_array($c) ? $c : null; return $cfg; }
     }
     $cfg = null;
     return null;

@@ -47,6 +47,7 @@ RewriteRule ^(.+?)/$ /$1.html [L]
 
 # Server-only files: never served
 RedirectMatch 404 ^/server-config/
+RedirectMatch 404 ^/private/
 <Files "db.php">
   Require all denied
 </Files>

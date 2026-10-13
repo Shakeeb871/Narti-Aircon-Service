@@ -93,7 +93,11 @@ if ($authed && $db) {
 <body>
 <div class="wrap">
 <?php if (!$cfg): ?>
-  <div class="card login"><h1>Setup needed</h1><p class="muted">The settings file narti-config.php was not found above the website folder.</p></div>
+  <div class="card login"><h1>Setup needed</h1>
+    <p class="muted">The settings file was not found. Create a file named exactly <b>narti-config.php</b> at this location:</p>
+    <p><code style="word-break:break-all"><?= $h(narti_config_paths()[0]) ?></code></p>
+    <p class="muted">If your hosting does not allow that folder, put it here instead:</p>
+    <p><code style="word-break:break-all"><?= $h(dirname(__DIR__) . '/private/narti-config.php') ?></code></p></div>
 <?php elseif (!$authed): ?>
   <form class="card login" method="post">
     <h1>NARTI Leads</h1>
