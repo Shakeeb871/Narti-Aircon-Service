@@ -15,4 +15,12 @@ return [
     // Password for the leads page: https://nartiairconservice.com/leads/
     // Use at least 12 characters. It is different from the database password.
     'admin_password' => 'PUT-A-STRONG-LEADS-PAGE-PASSWORD-HERE',
+
+    // Email sending (recommended). Create the mailbox in cPanel > Email Accounts first.
+    'smtp_host' => 'mail.nartiairconservice.com',
+    'smtp_port' => 465,
+    'smtp_user' => 'noreply@nartiairconservice.com',
+    'smtp_pass' => 'PUT-THE-MAILBOX-PASSWORD-HERE',
+    'smtp_from' => 'noreply@nartiairconservice.com',
+    'notify_email' => 'shujaatshakeeb26@gmail.com',
 ];

@@ -104,7 +104,16 @@ if ($email !== '') {
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-$sent = mail(TO_EMAIL, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . FROM_EMAIL);
+/* Prefer authenticated SMTP (Gmail trusts it); fall back to PHP mail() */
+$cfg = narti_config() ?? [];
+$sent = false;
+if (!empty($cfg['smtp_host'])) {
+    require_once __DIR__ . '/leads/smtp.php';
+    $sent = narti_smtp_send($cfg, (string)($cfg['notify_email'] ?? TO_EMAIL), $subject, $body, $email);
+}
+if (!$sent) {
+    $sent = mail((string)($cfg['notify_email'] ?? TO_EMAIL), '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . FROM_EMAIL);
+}
 
 if ($db && $leadId) {
     try { $db->prepare('UPDATE leads SET email_sent = ? WHERE id = ?')->execute([$sent ? 1 : 0, $leadId]); } catch (Throwable $e) {}

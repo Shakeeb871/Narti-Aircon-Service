@@ -48,9 +48,9 @@ RewriteRule ^(.+?)/$ /$1.html [L]
 # Server-only files: never served
 RedirectMatch 404 ^/server-config/
 RedirectMatch 404 ^/private/
-<Files "db.php">
+<FilesMatch "^(db|smtp)\.php$">
   Require all denied
-</Files>
+</FilesMatch>
 
 # Custom "page not found" page
 ErrorDocument 404 /404.html
