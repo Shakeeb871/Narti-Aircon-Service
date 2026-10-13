@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-function narti_smtp_send(array $c, string $to, string $subject, string $body, string $replyTo = ''): bool {
+function narti_smtp_send(array $c, array $toList, string $subject, string $body, string $replyTo = ''): bool {
     $host = (string)($c['smtp_host'] ?? '');
     $port = (int)($c['smtp_port'] ?? 465);
     $user = (string)($c['smtp_user'] ?? '');
@@ -41,10 +41,13 @@ function narti_smtp_send(array $c, string $to, string $subject, string $body, st
         if (!$cmd('STARTTLS', [220]) || !stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT) || !$cmd($ehlo, [250])) { fclose($fp); return false; }
     }
     if (!$cmd('AUTH LOGIN', [334]) || !$cmd(base64_encode($user), [334]) || !$cmd(base64_encode($pass), [235])) { fclose($fp); return false; }
-    if (!$cmd('MAIL FROM:<' . $from . '>', [250]) || !$cmd('RCPT TO:<' . $to . '>', [250, 251]) || !$cmd('DATA', [354])) { fclose($fp); return false; }
+    if (!$cmd('MAIL FROM:<' . $from . '>', [250])) { fclose($fp); return false; }
+    $accepted = 0;
+    foreach ($toList as $to) { if ($cmd('RCPT TO:<' . $to . '>', [250, 251])) $accepted++; }
+    if ($accepted === 0 || !$cmd('DATA', [354])) { fclose($fp); return false; }
 
     $headers  = 'From: =?UTF-8?B?' . base64_encode($name) . '?= <' . $from . ">\r\n";
-    $headers .= 'To: <' . $to . ">\r\n";
+    $headers .= 'To: ' . implode(', ', array_map(static fn($t) => '<' . $t . '>', $toList)) . "\r\n";
     if ($replyTo !== '') $headers .= 'Reply-To: <' . $replyTo . ">\r\n";
     $headers .= 'Subject: =?UTF-8?B?' . base64_encode($subject) . "?=\r\n";
     $headers .= 'Date: ' . date('r') . "\r\n";

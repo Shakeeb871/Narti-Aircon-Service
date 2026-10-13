@@ -22,5 +22,5 @@ return [
     'smtp_user' => 'info@nartiairconservice.com',
     'smtp_pass' => 'PUT-THE-MAILBOX-PASSWORD-HERE',
     'smtp_from' => 'info@nartiairconservice.com',
-    'notify_email' => 'shujaatshakeeb26@gmail.com',
+    'notify_email' => 'shujaatshakeeb26@gmail.com, nartirani42@gmail.com',   // one or more, comma-separated
 ];

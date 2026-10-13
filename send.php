@@ -107,12 +107,17 @@ $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 /* Prefer authenticated SMTP (Gmail trusts it); fall back to PHP mail() */
 $cfg = narti_config() ?? [];
 $sent = false;
+/* notify_email can be one address, a comma-separated list, or an array */
+$notify = $cfg['notify_email'] ?? TO_EMAIL;
+$toList = array_values(array_filter(array_map('trim', is_array($notify) ? $notify : explode(',', (string)$notify)),
+                                    static fn($e) => (bool)filter_var($e, FILTER_VALIDATE_EMAIL)));
+if (!$toList) { $toList = [TO_EMAIL]; }
 if (!empty($cfg['smtp_host'])) {
     require_once __DIR__ . '/leads/smtp.php';
-    $sent = narti_smtp_send($cfg, (string)($cfg['notify_email'] ?? TO_EMAIL), $subject, $body, $email);
+    $sent = narti_smtp_send($cfg, $toList, $subject, $body, $email);
 }
 if (!$sent) {
-    $sent = mail((string)($cfg['notify_email'] ?? TO_EMAIL), '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . FROM_EMAIL);
+    $sent = mail(implode(', ', $toList), '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . FROM_EMAIL);
 }
 
 if ($db && $leadId) {
