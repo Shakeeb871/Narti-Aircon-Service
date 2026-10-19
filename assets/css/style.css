@@ -2900,3 +2900,24 @@ main section.section { padding-top: var(--sec-gap) !important; padding-bottom: v
 .lead-card { overflow: hidden; padding-bottom: 22px; }
 .lead-card::before { border-radius: 0; }
 .lead-form__msg:empty { display: none; }
+
+/* Hero rating badges: shown only once a real rating is set in main.js REVIEWS */
+.ratings .rating:not(.has-rating) { display: none; }
+.ratings:not(:has(.rating.has-rating)) { display: none; }
+
+/* Service pages, phones: bring the lead form up right after the heading and a short intro */
+@media (max-width: 767px) {
+  .page-hero__grid:has(> .lead-card) { display: flex; flex-direction: column; gap: 0; }
+  .page-hero__grid:has(> .lead-card) > .page-hero__content { display: contents; }
+  .page-hero__grid:has(> .lead-card) .eyebrow { order: 1; }
+  .page-hero__grid:has(> .lead-card) .page-hero__title { order: 2; }
+  .page-hero__grid:has(> .lead-card) .divider { order: 3; }
+  .page-hero__grid:has(> .lead-card) .page-hero__text {
+    order: 4; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+  }
+  .page-hero__grid:has(> .lead-card) > .lead-card { order: 5; width: 100%; margin: 24px 0 0; }
+  .page-hero__grid:has(> .lead-card) .hero-hook { order: 6; margin-top: 28px; }
+  .page-hero__grid:has(> .lead-card) .ratings { order: 7; }
+  .page-hero__grid:has(> .lead-card) .hero__actions { order: 8; }
+  .page-hero__grid:has(> .lead-card) .breadcrumb--bottom { order: 9; }
+}

@@ -120,6 +120,8 @@
         (get('rf-date') ? '\nPreferred date: ' + get('rf-date') : '') +
         (optional('rf-area') ? '\nArea: ' + optional('rf-area') : '') +
         (optional('rf-msg') ? '\nDetails: ' + optional('rf-msg') : '');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'lead_form_submit', form_service: get('rf-service'), lead_source: 'whatsapp_form' });
       window.open('https://wa.me/60168210460?text=' + encodeURIComponent(text), '_blank', 'noopener');
 
       msg.textContent = 'WhatsApp is opening with your details. Press send and we will reply to confirm the visit.';
@@ -140,7 +142,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var ok = true;
-      form.querySelectorAll('[required]').forEach(function (f) {
+      form.querySelectorAll('[name=name], [name=phone]').forEach(function (f) {
         var bad = f.value.trim() === '';
         f.classList.toggle('is-invalid', bad);
         if (bad) ok = false;
@@ -148,7 +150,7 @@
       var em = form.querySelector('[name=email]');
       if (em.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())) { em.classList.add('is-invalid'); ok = false; }
       else em.classList.remove('is-invalid');
-      if (!ok) { msg.className = 'lead-form__msg is-error'; msg.textContent = 'Please fill in your name, phone, address and the issue.'; return; }
+      if (!ok) { msg.className = 'lead-form__msg is-error'; msg.textContent = 'Please fill in your name and phone number.'; return; }
       btn.disabled = true; btn.classList.add('is-loading');
       msg.className = 'lead-form__msg'; msg.textContent = 'Sending...';
       fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'X-Requested-With': 'fetch' } })

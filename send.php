@@ -58,8 +58,8 @@ $message = cleanText('message', 1500);
 $service = clean('service', 60);
 $page    = clean('page', 200);
 
-if ($name === '' || $phone === '' || $address === '' || $message === '') {
-    respond(false, 'Please fill in your name, phone, address and the issue.', $isAjax);
+if ($name === '' || $phone === '') {
+    respond(false, 'Please fill in your name and phone number.', $isAjax);
 }
 if (!preg_match('/^[0-9+()\-\s]{7,20}$/', $phone)) {
     respond(false, 'Please enter a valid phone number.', $isAjax);
