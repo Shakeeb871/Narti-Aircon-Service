@@ -3015,3 +3015,6 @@ main section.section { padding-top: var(--sec-gap) !important; padding-bottom: v
   .page-hero--light + .trust .trust-badge { flex-direction: column; align-items: flex-start; gap: 12px; padding: 18px 16px; }
   .page-hero--light + .trust .trust-badge__seal { flex: 0 0 44px; width: 44px; height: 44px; }
 }
+
+/* Service pages: testimonials sit on white under the trust cards */
+.page-hero--light ~ .section.reviews { background: #fff; }
