@@ -2995,17 +2995,12 @@ main section.section { padding-top: var(--sec-gap) !important; padding-bottom: v
   --tb-title: #0b2540; --tb-text: #3b5168; --tb-glow: rgba(47, 109, 181, .10);
   box-shadow: 0 22px 40px -24px rgba(13, 44, 73, .45), inset 0 0 0 1px #d3e2f0;
 }
-/* soft light from the top right corner, and an orange line that grows on hover */
+/* soft light from the top right corner */
 .page-hero--light + .trust .trust-badge::before {
   content: ""; position: absolute; z-index: -1; right: -40px; top: -60px; width: 180px; height: 180px; border-radius: 50%;
   background: radial-gradient(circle, var(--tb-glow), transparent 70%);
 }
-.page-hero--light + .trust .trust-badge::after {
-  content: ""; position: absolute; left: 20px; right: 20px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0;
-  background: linear-gradient(90deg, var(--orange), #f9a26a); transform: scaleX(.18); transform-origin: left; transition: transform .5s var(--ease);
-}
 .page-hero--light + .trust .trust-badge:hover { background: var(--tb-bg); transform: translateY(-4px); box-shadow: 0 28px 46px -22px rgba(13, 44, 73, .75); }
-.page-hero--light + .trust .trust-badge:hover::after { transform: scaleX(1); }
 .page-hero--light + .trust .trust-badge__seal { flex: 0 0 50px; width: 50px; height: 50px; background: var(--accent-btn); box-shadow: 0 0 0 4px rgba(243, 112, 33, .22), 0 10px 18px -8px rgba(191, 76, 12, .8); }
 .page-hero--light + .trust .trust-badge__seal svg { width: 22px; height: 22px; }
 .page-hero--light + .trust .trust-badge__body strong { color: var(--tb-title); font-size: 14.5px; }
