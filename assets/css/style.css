@@ -2940,9 +2940,9 @@ main section.section { padding-top: var(--sec-gap) !important; padding-bottom: v
 .hero-rated__logos svg { width: 18px; height: 18px; }
 .hero-rated__body { display: grid; gap: 3px; }
 .hero-rated__stars { color: #fbbc04; font-size: 17px; letter-spacing: 2px; line-height: 1; }
-.hero-rated__text { font-size: 12.5px; font-weight: 600; color: #2a4058; }
+.hero-rated__text { font-size: 12.5px; font-weight: 600; color: var(--text); }
 .hero-rated__text strong { color: #0b2540; font-weight: 800; }
-.page-hero--light .breadcrumb, .page-hero--light .breadcrumb a { color: #4a5f75; }
+.page-hero--light .breadcrumb, .page-hero--light .breadcrumb a { color: var(--muted); }
 .page-hero--light .breadcrumb [aria-current] { color: #0b2540; font-weight: 600; }
 .page-hero--light .lead-card { padding-top: 0; border-radius: 22px; box-shadow: 0 30px 60px -28px rgba(13, 44, 73, .35), 0 0 0 1px rgba(13, 44, 73, .05); }
 .page-hero--light .lead-card::before { display: none; }
@@ -2951,7 +2951,7 @@ main section.section { padding-top: var(--sec-gap) !important; padding-bottom: v
 .lead-card__tag { position: absolute; right: 16px; bottom: 14px; display: inline-flex; align-items: center; gap: 9px; padding: 8px 14px 8px 8px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 12.5px; font-weight: 700; box-shadow: 0 14px 30px -12px rgba(13, 44, 73, .55); }
 .lead-card__tag-ico { width: 26px; height: 26px; border-radius: 50%; background: var(--blue); display: grid; place-items: center; }
 .lead-card__tag-ico svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
-.page-hero--light .lead-card__text { color: #2a4058; }
+.page-hero--light .lead-card__text { color: var(--text); }
 @media (max-width: 991px) {
   .page-hero--light .page-hero__grid { grid-template-columns: 1fr; gap: 40px; }
   .page-hero--light .page-hero__text,
@@ -3018,3 +3018,6 @@ main section.section { padding-top: var(--sec-gap) !important; padding-bottom: v
 
 /* Service pages: testimonials sit on white under the trust cards */
 .page-hero--light ~ .section.reviews { background: #fff; }
+
+/* Darker body text across the site, matching the service hero paragraph */
+:root { --text: #1d3550; --muted: #3f556c; }
