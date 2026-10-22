@@ -27,7 +27,7 @@
 
   <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="/assets/css/style.min.css?v=216723fa">
+  <link rel="stylesheet" href="/assets/css/style.min.css?v=b3eab069">
 
   <script type="application/ld+json">
 {
@@ -223,14 +223,12 @@
   <main id="main">
 
     <!-- ============ CONTACT HERO ============ -->
-    <section class="about-hero contact-hero">
-      <div class="about-hero__bg" aria-hidden="true">
-        <img src="/assets/images/process/step-1-tell-us.webp" alt="" width="1200" height="800" srcset="/assets/images/process/step-1-tell-us-480.webp 480w, /assets/images/process/step-1-tell-us-800.webp 800w, /assets/images/process/step-1-tell-us.webp 1200w, /assets/images/process/step-1-tell-us-1536.webp 1536w" sizes="100vw" decoding="async">
-      </div>
+    <section class="about-hero contact-hero about-hero--light">
+      <svg class="ah-air" viewBox="0 0 1440 760" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="ahAir" x1="0" x2="1"><stop offset="0" stop-color="#2f6db5" stop-opacity="0"/><stop offset=".4" stop-color="#2f6db5" stop-opacity=".22"/><stop offset="1" stop-color="#2f6db5" stop-opacity="0"/></linearGradient></defs><path d="M-40 560 C 240 470, 420 640, 720 540 S 1180 420, 1480 500" stroke="url(#ahAir)" stroke-width="2"/><path d="M-40 600 C 260 520, 440 690, 740 590 S 1200 470, 1480 550" stroke="url(#ahAir)" stroke-width="1.5"/><path d="M-40 140 C 300 90, 520 200, 860 120 S 1300 60, 1480 110" stroke="url(#ahAir)" stroke-width="1.2"/></svg>
       <div class="container about-hero__grid">
         <div class="about-hero__content">
           <p class="eyebrow">Contact Us</p>
-          <h1 class="about-hero__title">Talk To An Aircond Technician Today.</h1>
+          <h1 class="about-hero__title">Talk To An <span class="ah-hl">Aircond Technician<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 C 50 2, 150 2, 198 7"/></svg></span> Today.</h1>
           <span class="divider"></span>
           <p class="about-hero__text">Call or WhatsApp us with the unit type and what it is doing. We reply with the next step and a time for the visit.</p>
           <div class="ratings ratings--dark">
@@ -259,8 +257,10 @@
             <a href="/">Home</a><span aria-hidden="true">&bull;</span><span aria-current="page">Contact Us</span>
           </nav>
         </div>
-
-        <ul class="about-facts">
+        <div class="ah-visual">
+          <div class="ah-photo"><img src="/assets/images/process/step-1-tell-us.webp" alt="Customer calling NARTI about her aircond" width="1200" height="800" srcset="/assets/images/process/step-1-tell-us-480.webp 480w, /assets/images/process/step-1-tell-us-800.webp 800w, /assets/images/process/step-1-tell-us.webp 1200w, /assets/images/process/step-1-tell-us-1536.webp 1536w" sizes="100vw" decoding="async"></div>
+          <span class="ah-badge"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i>Call or WhatsApp</span>
+          <ul class="about-facts">
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
             <span><strong>+60 16-821 0460</strong><span>Call or WhatsApp, same number</span></span>
@@ -274,8 +274,8 @@
             <span><strong>Written quote first</strong><span>You approve the price before work starts</span></span>
           </li>
         </ul>
+        </div>
       </div>
-      <span class="about-hero__watermark" aria-hidden="true">CONTACT</span>
     </section>
 
     <!-- ============ CONTACT CARDS ============ -->
