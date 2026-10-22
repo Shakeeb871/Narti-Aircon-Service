@@ -3221,3 +3221,5 @@ main .other-services + .cta--card { --cta-top: #f3f8fd; }
 @media (max-width: 600px) { .about-hero--light.contact-hero { padding-bottom: 120px !important; } }
 
 .contact-card__icon { background: #2f6db5 !important; }
+@media (max-width: 600px) { .eyebrow { font-size: 11.5px; } }
+.why__content .why__img { margin-top: 26px; }
