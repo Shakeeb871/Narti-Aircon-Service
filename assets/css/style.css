@@ -3233,3 +3233,6 @@ main .other-services + .cta--card { --cta-top: #f3f8fd; }
 .svc-areas li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #2f6db5; }
 .svc-areas li:first-child { background: #2f6db5; border-color: #2f6db5; color: #fff; }
 .svc-areas li:first-child::before { background: #fff; }
+
+/* odd number of hero points: the last one spans both columns */
+.svc-usps li:last-child:nth-child(odd) { grid-column: 1 / -1; }
