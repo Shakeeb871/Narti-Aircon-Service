@@ -3239,3 +3239,6 @@ main .other-services + .cta--card { --cta-top: #f3f8fd; }
 
 /* rating badge sits above the service H1 in place of the eyebrow */
 .page-hero--light .page-hero__content > .hero-rated:first-child { margin: 0 0 20px; }
+
+/* service hero: years badge beside the rating badge */
+.page-hero--light .hero-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 20px; } .page-hero--light .hero-top .hero-rated { margin: 0; } .hero-years { display: inline-flex; align-items: center; gap: 9px; padding: 10px 16px 10px 12px; border-radius: 16px; background: #0b2540; color: #fff; font-size: 14px; font-weight: 800; letter-spacing: -.01em; box-shadow: 0 14px 30px -18px rgba(13, 44, 73, .6); } .hero-years svg { width: 22px; height: 22px; padding: 4px; border-radius: 8px; background: #2f6db5; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; box-sizing: content-box; } @media (max-width: 767px) { .page-hero--light .hero-top { gap: 10px; } .page-hero--light .hero-top .hero-rated { width: 100%; } }
