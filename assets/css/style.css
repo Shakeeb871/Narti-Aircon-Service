@@ -3242,3 +3242,6 @@ main .other-services + .cta--card { --cta-top: #f3f8fd; }
 
 /* service hero: years badge beside the rating badge */
 .page-hero--light .hero-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 20px; } .page-hero--light .hero-top .hero-rated { margin: 0; } .hero-years { display: inline-flex; align-items: center; gap: 9px; padding: 10px 16px 10px 12px; border-radius: 16px; background: #0b2540; color: #fff; font-size: 14px; font-weight: 800; letter-spacing: -.01em; box-shadow: 0 14px 30px -18px rgba(13, 44, 73, .6); } .hero-years svg { width: 22px; height: 22px; padding: 4px; border-radius: 8px; background: #2f6db5; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; box-sizing: content-box; } @media (max-width: 767px) { .page-hero--light .hero-top { gap: 10px; } .page-hero--light .hero-top .hero-rated { width: 100%; } }
+
+/* darker text across the site */
+:root { --text: #10263f; --muted: #2b425c; } .page-hero--light + .trust .trust-badge:nth-child(4) { --tb-text: #1d3550; } .page-hero--light .page-hero__text, .page-hero--light .page-hero__text:first-of-type, .about-hero--light .about-hero__text { color: #10263f !important; } .lead-field em, .review-card__who span, .price-row__name, .price-row__price small { color: #2b425c; }
